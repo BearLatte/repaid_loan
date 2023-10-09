@@ -5,11 +5,18 @@ import 'package:shared_preferences/shared_preferences.dart';
 class Global {
   static const _tokenKey = 'kAccessToken';
   static const _idfaKey = 'kIdfa';
+  static const _loginKey = 'kLogin';
 
   /// token
   static Future<String> get accessToken async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.getString(_tokenKey) ?? '';
+  }
+
+  /// login
+  static Future<bool> get isLogin async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return preferences.getBool(_loginKey) ?? false;
   }
 
   /// 获取 idfa
