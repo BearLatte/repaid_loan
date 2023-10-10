@@ -38,6 +38,12 @@ class ApiUtil {
   /// 退出登录
   static Future<void> logout() async => await _baseObjectRequest('/XeGRdX/NFxxYr');
 
+  /// 查询用户在space详情
+  static Future<ContModel> checkSpaceDetail(String productId) async {
+    ContModel cont = await _baseObjectRequest('/XeGRdX/OCaKry/LUTWOu', params: {'productId': productId});
+    return cont;
+  }
+
   static Future<dynamic> _baseObjectRequest(String path, {Map<String, dynamic>? params}) async {
     var json = await DioUtil().request(path, params: params, method: DioMethod.post);
     ApiResponse response = ApiResponse.fromJson(json);

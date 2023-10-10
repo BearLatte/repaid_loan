@@ -46,7 +46,10 @@ class HomeController extends GetxController {
     if (!(await Global.isLogin)) {
       return Get.toNamed(Routes.login);
     }
-    debugPrint('DEBUG: 当前点击的产品 id: ${product.id}');
+    ContModel cont = await ApiUtil.checkSpaceDetail(product.id);
+    if (cont.userStatus == 1) {
+      Get.toNamed(Routes.kycVerify);
+    }
   }
 
   void go2orders() {

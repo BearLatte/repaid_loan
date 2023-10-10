@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
 import 'package:repaid_loan/controllers/home_controller.dart';
+import 'package:repaid_loan/controllers/kyc_verify_controller.dart';
 import 'package:repaid_loan/controllers/login_controller.dart';
 import 'package:repaid_loan/controllers/profile_controller.dart';
 import 'package:repaid_loan/views/about_us_view.dart';
+import 'package:repaid_loan/views/kyc_verify_view.dart';
 import 'package:repaid_loan/views/login_view.dart';
 import 'package:repaid_loan/views/profile_view.dart';
 
@@ -11,6 +13,9 @@ import '../views/home_view.dart';
 class Routes {
   /// 首页
   static const String home = '/';
+
+  /// KYC info verify
+  static const String kycVerify = '/kycVerify';
 
   /// 个人中心
   static const String profile = '/profile';
@@ -23,6 +28,12 @@ class Routes {
 
   static List<GetPage> pages = [
     GetPage(name: home, page: () => const HomeView(), binding: BindingsBuilder(() => Get.lazyPut(() => HomeController()))),
+    GetPage(
+      name: kycVerify,
+      transition: Transition.cupertino,
+      page: () => const KYCVerifyView(),
+      binding: BindingsBuilder(() => Get.lazyPut(() => KYCVerifyController())),
+    ),
     GetPage(
       name: login,
       page: () => const LoginView(),
