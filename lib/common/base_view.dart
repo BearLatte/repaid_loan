@@ -7,12 +7,23 @@ class BaseView extends StatelessWidget {
   final Widget? background;
   final bool showBackButton;
   final String? title;
-  const BaseView({super.key, required this.body, this.showBackButton = true, this.title, this.background});
+  final bool extendBody;
+  final bool extendBodyBehindAppBar;
+  const BaseView({
+    super.key,
+    required this.body,
+    this.showBackButton = true,
+    this.title,
+    this.background,
+    this.extendBodyBehindAppBar = false,
+    this.extendBody = false,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
+      extendBody: extendBody,
+      extendBodyBehindAppBar: extendBodyBehindAppBar,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,

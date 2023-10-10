@@ -17,12 +17,17 @@ class HomeView extends StatelessWidget {
     return GetBuilder<HomeController>(
       builder: (controller) {
         return FocusDetector(
-          onForegroundGained: controller.loadHomeViewData,
+          onFocusGained: controller.loadHomeViewData,
           child: BaseView(
             showBackButton: false,
+            extendBodyBehindAppBar: true,
             body: Column(
               children: [
-                const CommonImage(src: 'assets/images/banner.png', width: double.infinity, fit: BoxFit.cover),
+                CommonImage(
+                  src: controller.isVerified ? 'assets/images/verified_banner.png' : 'assets/images/banner.png',
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
                 Transform.translate(
                   offset: const Offset(0, -20),
                   child: Container(
@@ -39,13 +44,35 @@ class HomeView extends StatelessWidget {
                     ),
                   ),
                 ),
-                SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: List.generate(
-                      controller.products.length,
-                      (index) => ProductCell(product: controller.products[index], topCorner: index == 0, onPressed: () => controller.productOnPressed(controller.products[index])),
-                    ).toList(),
+                Expanded(
+                  child: Stack(
+                    children: [
+                      SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: List.generate(
+                            controller.products.length,
+                            (index) => ProductCell(
+                              product: controller.products[index],
+                              topCorner: index == 0,
+                              onPressed: () => controller.productOnPressed(controller.products[index]),
+                            ),
+                          ).toList(),
+                        ),
+                      ),
+                      Row(
+                        children: <Widget>[
+                          const Spacer(),
+                          Transform.translate(
+                              offset: const Offset(0, -22),
+                              child: IconButton(
+                                onPressed: controller.loadHomeViewData,
+                                icon: const CommonImage(src: 'assets/icons/refresh.png', width: 44, height: 44, fit: BoxFit.cover),
+                              )),
+                          const Spacer(),
+                        ],
+                      ),
+                    ],
                   ),
                 )
               ],

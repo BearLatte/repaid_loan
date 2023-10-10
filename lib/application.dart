@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:repaid_loan/global/index.dart';
 import 'package:repaid_loan/route/index.dart';
 import 'package:repaid_loan/util/api_util/index.dart';
+import 'package:repaid_loan/util/colors_util.dart';
 
 class Application extends StatelessWidget {
   const Application({super.key});
@@ -17,6 +18,7 @@ class Application extends StatelessWidget {
       getPages: Routes.pages,
       defaultTransition: Transition.downToUp,
       builder: EasyLoading.init(),
+      theme: ThemeData(colorScheme: ColorScheme.light(primary: ColorsUtil.hexColor(0x00AD8E))),
       onInit: () async {
         // 获取 IDFA 监控网络情况
         await Global.fetchAdvertisingId();

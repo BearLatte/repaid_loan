@@ -17,6 +17,27 @@ class ApiUtil {
     return cont.loanProductList;
   }
 
+  /// 发送短信
+  static Future<void> sendOTP(String phone) async {
+    void result = await _baseObjectRequest('/XeGRdX/oLUNg', params: {'phone': phone});
+    return Future.value();
+  }
+
+  /// 登录
+  static Future<ContModel> login(String phone, String code) async {
+    ContModel cont = await _baseObjectRequest('/XeGRdX/tXrkVPy', params: {'phone': phone, 'code': code});
+    return cont;
+  }
+
+  /// 获取用户信息
+  static Future<ContModel> fetchUserInfo() async {
+    ContModel cont = await _baseObjectRequest('/XeGRdX/OCaKry/Tpyrlnr');
+    return cont;
+  }
+
+  /// 退出登录
+  static Future<void> logout() async => await _baseObjectRequest('/XeGRdX/NFxxYr');
+
   static Future<dynamic> _baseObjectRequest(String path, {Map<String, dynamic>? params}) async {
     var json = await DioUtil().request(path, params: params, method: DioMethod.post);
     ApiResponse response = ApiResponse.fromJson(json);
