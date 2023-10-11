@@ -30,6 +30,8 @@
 	<true/>
 	<key>NSUserTrackingUsageDescription</key>
 	<string>This identifier will be used to recommend personalized advertisements to you.</string>
+	<key>NSCameraUsageDescription</key>
+    <string>You did not allow us to access the camera, which will help you obtain a loan. Would you like to set up authorization.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

@@ -90,6 +90,10 @@ class LoginController extends GetxController {
       return CommonSnackBar.showSnackBar('Please enter correct OTP');
     }
 
+    if (!isCheckedPrivacy.value) {
+      return CommonSnackBar.showSnackBar('Please agree with our policy to continue');
+    }
+
     ContModel cont = await ApiUtil.login(phoneController.text, codeController.text);
     if (cont.isLogin == 0) {
       debugPrint('DEBUG: 此处需要做FB和ADJust埋点');

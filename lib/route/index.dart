@@ -4,7 +4,8 @@ import 'package:repaid_loan/controllers/kyc_verify_controller.dart';
 import 'package:repaid_loan/controllers/login_controller.dart';
 import 'package:repaid_loan/controllers/profile_controller.dart';
 import 'package:repaid_loan/views/about_us_view.dart';
-import 'package:repaid_loan/views/kyc_verify_view.dart';
+import 'package:repaid_loan/views/authentication/kyc_front_example_view.dart';
+import 'package:repaid_loan/views/authentication/kyc_verify_view.dart';
 import 'package:repaid_loan/views/login_view.dart';
 import 'package:repaid_loan/views/profile_view.dart';
 
@@ -16,6 +17,9 @@ class Routes {
 
   /// KYC info verify
   static const String kycVerify = '/kycVerify';
+
+  /// KYC 正面示例
+  static const String frontExample = '/example';
 
   /// 个人中心
   static const String profile = '/profile';
@@ -30,22 +34,22 @@ class Routes {
     GetPage(name: home, page: () => const HomeView(), binding: BindingsBuilder(() => Get.lazyPut(() => HomeController()))),
     GetPage(
       name: kycVerify,
-      transition: Transition.cupertino,
       page: () => const KYCVerifyView(),
       binding: BindingsBuilder(() => Get.lazyPut(() => KYCVerifyController())),
     ),
+    GetPage(name: frontExample, page: () => const KYCFrontExampleView(), popGesture: false),
     GetPage(
       name: login,
+      popGesture: false,
       page: () => const LoginView(),
       binding: BindingsBuilder(() => Get.lazyPut(() => LoginController())),
       transitionDuration: const Duration(milliseconds: 250),
-      popGesture: false,
     ),
     GetPage(
       name: profile,
+      transition: Transition.cupertino,
       page: () => const ProfileView(),
       binding: BindingsBuilder(() => Get.lazyPut(() => ProfileController())),
-      transition: Transition.cupertino,
     ),
     GetPage(name: Routes.aboutUs, page: () => const AboutUsView(), transition: Transition.cupertino)
   ];
