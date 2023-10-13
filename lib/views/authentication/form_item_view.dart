@@ -5,12 +5,13 @@ enum Gender { none, male, female }
 
 enum CellType { normal, selection }
 
-enum FormItemType { aadhaarName, aadhaarNumber, birth, marriage, education, address }
+enum FormItemType { aadhaarName, aadhaarNumber, birth, marriage, education, address, panNumber, whatApp, industry, workTitle, salary, email }
 
 class FormItemView extends StatelessWidget {
   final String title;
   final CellType cellType;
   final bool isMultiLines;
+  final TextInputType? keyboardType;
   final TextEditingController? inputController;
   final Function()? onPressed;
   const FormItemView({
@@ -20,6 +21,7 @@ class FormItemView extends StatelessWidget {
     this.inputController,
     this.isMultiLines = false,
     this.onPressed,
+    this.keyboardType,
   });
 
   @override
@@ -39,6 +41,7 @@ class FormItemView extends StatelessWidget {
             readOnly: cellType == CellType.selection,
             maxLines: isMultiLines ? null : 1,
             onTap: onPressed,
+            keyboardType: keyboardType,
             decoration: InputDecoration(
               hintText: title,
               hintStyle: TextStyle(color: ColorsUtil.hexColor(0x999999)),

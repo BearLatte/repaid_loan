@@ -1,6 +1,7 @@
 PODS:
   - advertising_id (0.0.1):
     - Flutter
+  - AliyunOSSiOS (2.10.18)
   - connection_network_type (0.0.1):
     - Flutter
     - ReachabilitySwift
@@ -56,6 +57,7 @@ PODS:
 
 DEPENDENCIES:
   - advertising_id (from `.symlinks/plugins/advertising_id/ios`)
+  - AliyunOSSiOS
   - connection_network_type (from `.symlinks/plugins/connection_network_type/ios`)
   - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
@@ -71,6 +73,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AliyunOSSiOS
     - libwebp
     - Mantle
     - ReachabilitySwift
@@ -107,6 +110,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   advertising_id: 31c738918c2e04d86d80c293357e61e06e87df74
+  AliyunOSSiOS: e683c1b1faa0657b5cd02de733628cf996f4cd93
   connection_network_type: 160e62717f4cfc913811aa4e4ccf7f4e60497936
   connectivity_plus: 07c49e96d7fc92bc9920617b83238c4d178b446a
   device_info_plus: 7545d84d8d1b896cb16a4ff98c19f07ec4b298ea
@@ -125,6 +129,6 @@ SPEC CHECKSUMS:
   shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
   url_launcher_ios: 08a3dfac5fb39e8759aeb0abbd5d9480f30fc8b4
 
-PODFILE CHECKSUM: 84dbd103853feca29575964ca18a1cb4a59a3686
+PODFILE CHECKSUM: eb19fc8d00e720bce090c3bcb1513e4bd0dc5b23
 
 COCOAPODS: 1.12.1

@@ -18,6 +18,9 @@ class DioInterceptors extends Interceptor {
     switch (options.path) {
       case '/XeGRdX/tXrkVPy':
         EasyLoading.show(status: 'login...', maskType: EasyLoadingMaskType.black);
+      case '/XeGRdX/OCaKry/SXBZdv':
+      case '/XeGRdX/OCaKry/YYupEXAZCg':
+        break;
       default:
         EasyLoading.show(status: 'loading...', maskType: EasyLoadingMaskType.black);
     }
@@ -94,21 +97,15 @@ class DioInterceptors extends Interceptor {
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     switch (response.requestOptions.path) {
+      case '/XeGRdX/OCaKry/SXBZdv':
+      case '/XeGRdX/OCaKry/YYupEXAZCg':
+        break;
       default:
         EasyLoading.dismiss();
     }
 
-    // Map<String, dynamic> result = {};
-    // Map<String, dynamic> data = Map.from(response.data);
-    // data.remove('code');
-    // data.remove('msg');
-
     int resultCode = response.data['code'];
     String resultMsg = response.data['msg'];
-    // result['data'] = data;
-    // result['resultCode'] = resultCode;
-    // result['resultMsg'] = resultMsg;
-    // response.data = result;
 
     if (resultCode == -1) {
       GetX.Get.toNamed(Routes.login);

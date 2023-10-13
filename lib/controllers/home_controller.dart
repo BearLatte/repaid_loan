@@ -34,7 +34,7 @@ class HomeController extends GetxController {
     if (isLogin) {
       ContModel cont = await ApiUtil.fetchUserInfo();
       isVerified = cont.userStatus != 1;
-      products = cont.loanProductList;
+      products = cont.loanProductList ?? [];
     } else {
       // 登录前产品获取
       products = await ApiUtil.fetchProductList();

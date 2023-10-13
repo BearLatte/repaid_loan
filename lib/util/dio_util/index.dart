@@ -67,6 +67,9 @@ class DioUtil {
     return _instance!;
   }
 
+  // 获取 dio
+  Dio fetchDio() => _dio;
+
   // 统一请求方法
   Future request(String path,
       {DioMethod method = DioMethod.get, Map<String, dynamic>? params, data, CancelToken? cancelToken, Options? options, ProgressCallback? onSendProgress, ProgressCallback? onReceiveProgress}) async {

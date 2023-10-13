@@ -1,4 +1,5 @@
 import 'package:advertising_id/advertising_id.dart';
+import 'package:flutter/services.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:repaid_loan/models/cont_model.dart';
@@ -9,6 +10,9 @@ class Global {
   static const _idfaKey = 'kIdfa';
   static const _loginKey = 'kLogin';
   static const _phoneKey = 'kPhone';
+
+  /// 与原生通信对象
+  static const MethodChannel channel = MethodChannel('repaidLoan.app.channel');
 
   /// token
   static Future<String> get accessToken async {
@@ -49,7 +53,7 @@ class Global {
   /// 登录成功，配置信息
   static Future<void> loginSuccessConfig(ContModel content, String phone) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    preferences.setString(_tokenKey, content.token);
+    preferences.setString(_tokenKey, content.token!);
     preferences.setBool(_loginKey, true);
     preferences.setString(_phoneKey, phone);
   }

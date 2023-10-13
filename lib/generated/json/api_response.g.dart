@@ -1,7 +1,7 @@
 import 'package:repaid_loan/generated/json/base/json_convert_content.dart';
 import 'package:repaid_loan/util/api_util/api_response.dart';
-
 import '../../models/cont_model.dart';
+
 
 ApiResponse $ApiResponseFromJson(Map<String, dynamic> json) {
   final ApiResponse apiResponse = ApiResponse();
@@ -43,7 +43,8 @@ extension ApiResponseExtension on ApiResponse {
 
 ResponseModel $ResponseModelFromJson(Map<String, dynamic> json) {
   final ResponseModel responseModel = ResponseModel();
-  final List<dynamic>? list = (json['list'] as List<dynamic>?)?.map((e) => e).toList();
+  final List<dynamic>? list = (json['list'] as List<dynamic>?)?.map(
+          (e) => e).toList();
   if (list != null) {
     responseModel.list = list;
   }
