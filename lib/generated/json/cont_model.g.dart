@@ -2,7 +2,7 @@ import 'package:repaid_loan/models/cont_model.dart';
 import 'package:repaid_loan/models/pay_fail_info_model.dart';
 import 'package:repaid_loan/models/product_detail_model.dart';
 import 'package:repaid_loan/models/product_model.dart';
-import 'package:repaid_loan/util/api_util/json_convert_content.dart';
+import 'package:repaid_loan/util/api_util//json_convert_content.dart';
 
 import '../../models/credentials_model.dart';
 
@@ -31,6 +31,10 @@ ContModel $ContModelFromJson(Map<String, dynamic> json) {
   final int? isFirstApply = jsonConvert.convert<int>(json['isFirstApply']);
   if (isFirstApply != null) {
     contModel.isFirstApply = isFirstApply;
+  }
+  final int? userPayFail = jsonConvert.convert<int>(json['userPayFail']);
+  if (userPayFail != null) {
+    contModel.userPayFail = userPayFail;
   }
   final String? url = jsonConvert.convert<String>(json['url']);
   if (url != null) {
@@ -207,6 +211,7 @@ Map<String, dynamic> $ContModelToJson(ContModel entity) {
   data['userStatus'] = entity.userStatus;
   data['userLiveness'] = entity.userLiveness;
   data['isFirstApply'] = entity.isFirstApply;
+  data['userPayFail'] = entity.userPayFail;
   data['url'] = entity.url;
   data['region'] = entity.region;
   data['bucket'] = entity.bucket;
@@ -259,6 +264,7 @@ extension ContModelExtension on ContModel {
     int? userStatus,
     int? userLiveness,
     int? isFirstApply,
+    int? userPayFail,
     String? url,
     String? region,
     String? bucket,
@@ -308,6 +314,7 @@ extension ContModelExtension on ContModel {
       ..userStatus = userStatus ?? this.userStatus
       ..userLiveness = userLiveness ?? this.userLiveness
       ..isFirstApply = isFirstApply ?? this.isFirstApply
+      ..userPayFail = userPayFail ?? this.userPayFail
       ..url = url ?? this.url
       ..region = region ?? this.region
       ..bucket = bucket ?? this.bucket

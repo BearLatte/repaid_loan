@@ -1,5 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
+import 'package:repaid_loan/common/common_alert.dart';
 import 'package:repaid_loan/global/index.dart';
 import 'package:repaid_loan/models/cont_model.dart';
 import 'package:repaid_loan/route/index.dart';
@@ -11,6 +12,7 @@ class HomeController extends GetxController {
   bool _checkedNetwork = false;
   bool isLogin = false;
   bool isVerified = false;
+  bool isShowPayFailAlert = false;
   List<ProductModel> products = [];
 
   @override
@@ -34,6 +36,14 @@ class HomeController extends GetxController {
       ContModel cont = await ApiUtil.fetchUserInfo();
       isVerified = cont.userStatus != 1;
       products = cont.loanProductList ?? [];
+      if (cont.userPayFail == 1 && !isShowPayFailAlert) {
+        isShowPayFailAlert = true;
+        String? result = await CommonAlert.showAlert(
+          type: AlertType.loanFailed,
+          infoModel: cont.userPayFailInfo,
+        );
+        if (result != null) isShowPayFailAlert = false;
+      }
     } else {
       // 登录前产品获取
       products = await ApiUtil.fetchProductList();

@@ -3,18 +3,65 @@ import 'package:get/get.dart';
 import 'package:repaid_loan/common/common_image.dart';
 import 'package:repaid_loan/util/colors_util.dart';
 
+import '../models/pay_fail_info_model.dart';
+
 enum AlertType { tips, error, loanFailed, success }
 
 class CommonAlert {
-  static Future<String?> showAlert({AlertType type = AlertType.tips, String? message}) async {
+  static Future<String?> showAlert({AlertType type = AlertType.tips, String? message, PayFailInfoModel? infoModel}) async {
     switch (type) {
       case AlertType.tips:
         return await tipsDialog(message);
       case AlertType.error:
         return await errorAlert(message);
+      case AlertType.loanFailed:
+        return await loanFailedAlert(infoModel);
       default:
         return null;
     }
+  }
+
+  static Future<String?> loanFailedAlert(PayFailInfoModel? infoModel) async {
+    return await Get.defaultDialog(
+      title: '',
+      titleStyle: const TextStyle(fontSize: 0),
+      titlePadding: EdgeInsets.zero,
+      barrierDismissible: false,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+      content: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              ClipOval(child: CommonImage(src: infoModel!.logo, width: 50)),
+              const Padding(padding: EdgeInsets.only(left: 15)),
+              Text(infoModel!.loanName, style: TextStyle(color: ColorsUtil.hexColor(0x333333), fontSize: 20)),
+            ],
+          ),
+          const Padding(padding: EdgeInsets.only(bottom: 18)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text('Order Number', style: TextStyle(color: ColorsUtil.hexColor(0xA5A5A5), fontSize: 16)),
+              Text(infoModel.loanOrderNo, style: TextStyle(color: ColorsUtil.hexColor(0x333333), fontSize: 16)),
+            ],
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: Text(infoModel.content, textAlign: TextAlign.center, style: TextStyle(color: ColorsUtil.hexColor(0x333333), fontSize: 14)),
+          ),
+        ],
+      ),
+      confirm: ElevatedButton(
+        onPressed: () => Get.back(result: 'ok'),
+        child: Container(
+          width: double.infinity,
+          alignment: Alignment.center,
+          padding: const EdgeInsets.symmetric(vertical: 13),
+          child: const Text('OK', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600)),
+        ),
+      ),
+    );
   }
 
   static Future<T?> tipsDialog<T>(String? message) async {

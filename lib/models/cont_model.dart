@@ -18,6 +18,7 @@ class ContModel {
   int? userStatus;
   int? userLiveness;
   int? isFirstApply;
+  int? userPayFail;
 
   // OSS 图片上传相关
   String? url;
