@@ -12,6 +12,7 @@ class Application extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Global.setAppOpenTime();
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: Routes.home,

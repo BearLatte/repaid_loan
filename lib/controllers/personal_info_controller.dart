@@ -29,8 +29,13 @@ class PersonalInfoController extends GetxController {
   @override
   void onInit() {
     fetchEnumList();
-    getPersonalInfo();
     super.onInit();
+  }
+
+  @override
+  void onReady() {
+    getPersonalInfo();
+    super.onReady();
   }
 
   void fetchEnumList() async {
@@ -42,6 +47,17 @@ class PersonalInfoController extends GetxController {
 
   void getPersonalInfo() async {
     ContModel cont = await ApiUtil.fetchUserAuthenticationInfo(step: 'loanapiUserBasic');
+    panCardImage = cont.panCardImg ?? 'assets/images/pan_simple_img.png';
+    panCardImg = cont.panCardImg;
+    panNumberController.text = cont.panNumber ?? '';
+    whatsAppController.text = cont.bodyImg ?? '';
+    industryController.text = cont.industry ?? '';
+    workTitleController.text = cont.job ?? '';
+    salaryController.text = cont.monthlySalary ?? '';
+    emailController.text = cont.email ?? '';
+    paytmController.text = cont.paytmAccount ?? '';
+    debugPrint('DEBUG: 查看信息 ${cont.toJson()}');
+    update();
   }
 
   void panCardOnPressed() async {

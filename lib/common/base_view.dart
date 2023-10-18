@@ -9,6 +9,7 @@ class BaseView extends StatelessWidget {
   final String? title;
   final bool extendBody;
   final bool extendBodyBehindAppBar;
+  final bool isResizeToAvoidBottomInset;
   const BaseView({
     super.key,
     required this.body,
@@ -17,6 +18,7 @@ class BaseView extends StatelessWidget {
     this.background,
     this.extendBodyBehindAppBar = false,
     this.extendBody = false,
+    this.isResizeToAvoidBottomInset = true,
   });
 
   @override
@@ -24,15 +26,14 @@ class BaseView extends StatelessWidget {
     return Scaffold(
       extendBody: extendBody,
       extendBodyBehindAppBar: extendBodyBehindAppBar,
+      resizeToAvoidBottomInset: isResizeToAvoidBottomInset,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
         leading: showBackButton ? IconButton(onPressed: () => Get.back(), icon: const Icon(Icons.arrow_back_sharp)) : null,
         title: Text(title ?? '', style: const TextStyle(color: Colors.white, fontSize: 20)),
       ),
-      body: Stack(
-        children: [background ?? Container(color: ColorsUtil.hexColor(0xf5f5f5)), body],
-      ),
+      body: Stack(children: [background ?? Container(color: ColorsUtil.hexColor(0xf5f5f5)), body]),
     );
   }
 }

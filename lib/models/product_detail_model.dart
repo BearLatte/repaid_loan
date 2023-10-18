@@ -7,7 +7,9 @@ export 'package:repaid_loan/generated/json/product_detail_model.g.dart';
 
 @JsonSerializable()
 class ProductDetailModel {
-  late String productId;
+  late String logo;
+  late String spaceName;
+  String? productId;
   late String loanAmountStr;
   late String loanDate;
   late String receiveAmountStr;

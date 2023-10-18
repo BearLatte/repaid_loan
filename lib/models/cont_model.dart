@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:repaid_loan/generated/json/base/json_field.dart';
 import 'package:repaid_loan/generated/json/cont_model.g.dart';
+import 'package:repaid_loan/models/pay_fail_info_model.dart';
 import 'package:repaid_loan/models/product_detail_model.dart';
 import 'package:repaid_loan/models/product_model.dart';
 
@@ -15,6 +16,8 @@ class ContModel {
   String? token;
   int? isLogin;
   int? userStatus;
+  int? userLiveness;
+  int? isFirstApply;
 
   // OSS 图片上传相关
   String? url;
@@ -31,11 +34,27 @@ class ContModel {
   String? dateOfBirth;
   String? gender;
   String? addressAll;
-  String? panNumber;
   String? firstName;
   String? education;
   String? marriageStatus;
   String? residenceDetailAddress;
+  String? panNumber;
+  // whatsapp 账号
+  String? bodyImg;
+  String? email;
+  String? industry;
+  String? monthlySalary;
+  String? paytmAccount;
+  String? job;
+  String? familyNumber;
+  String? familyName;
+  String? colleagueNumber;
+  String? colleagueName;
+  String? brotherOrSisterNumber;
+  String? brotherOrSisterName;
+  String? bankName;
+  String? bankCardNo;
+  String? ifscCode;
 
   // 下拉列表项
   List<String>? eduList;
@@ -47,6 +66,7 @@ class ContModel {
 
   List<ProductModel>? loanProductList;
   ProductDetailModel? loanProductVo;
+  PayFailInfoModel? userPayFailInfo;
 
   ContModel();
 

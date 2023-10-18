@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
+		22022AA72ADE41C80090ABD6 /* TakePictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22022AA62ADE41C80090ABD6 /* TakePictureView.swift */; };
+		22022AA92ADE81160090ABD6 /* ErrorAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22022AA82ADE81160090ABD6 /* ErrorAlertView.swift */; };
+		22032A242ADF7CE500785E27 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22032A232ADF7CE500785E27 /* UIDevice+Extension.swift */; };
 		229EC1082AD8E163000563BA /* OSSParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229EC1072AD8E163000563BA /* OSSParameters.swift */; };
 		229EC10A2AD8E70A000563BA /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229EC1092AD8E70A000563BA /* UIImage+Extensions.swift */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
@@ -48,6 +51,9 @@
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		1FFBBE54E66563A78F1570F4 /* Pods-RunnerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release.xcconfig"; sourceTree = "<group>"; };
+		22022AA62ADE41C80090ABD6 /* TakePictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakePictureView.swift; sourceTree = "<group>"; };
+		22022AA82ADE81160090ABD6 /* ErrorAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorAlertView.swift; sourceTree = "<group>"; };
+		22032A232ADF7CE500785E27 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		229EC1072AD8E163000563BA /* OSSParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSSParameters.swift; sourceTree = "<group>"; };
 		229EC1092AD8E70A000563BA /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		331C807B294A618700263BE5 /* RunnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerTests.swift; sourceTree = "<group>"; };
@@ -100,9 +106,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		22022AA32ADE418A0090ABD6 /* TakePhoto */ = {
+			isa = PBXGroup;
+			children = (
+				22022AA82ADE81160090ABD6 /* ErrorAlertView.swift */,
+				22022AA62ADE41C80090ABD6 /* TakePictureView.swift */,
+			);
+			path = TakePhoto;
+			sourceTree = "<group>";
+		};
 		229EC1062AD8E12A000563BA /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				22032A232ADF7CE500785E27 /* UIDevice+Extension.swift */,
 				229EC1072AD8E163000563BA /* OSSParameters.swift */,
 				229EC1092AD8E70A000563BA /* UIImage+Extensions.swift */,
 			);
@@ -152,6 +168,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				22022AA32ADE418A0090ABD6 /* TakePhoto */,
 				229EC1062AD8E12A000563BA /* utils */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
@@ -391,8 +408,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				229EC1082AD8E163000563BA /* OSSParameters.swift in Sources */,
+				22032A242ADF7CE500785E27 /* UIDevice+Extension.swift in Sources */,
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
+				22022AA92ADE81160090ABD6 /* ErrorAlertView.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
+				22022AA72ADE41C80090ABD6 /* TakePictureView.swift in Sources */,
 				229EC10A2AD8E70A000563BA /* UIImage+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

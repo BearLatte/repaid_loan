@@ -1,8 +1,16 @@
-import 'package:repaid_loan/generated/json/base/json_convert_content.dart';
 import 'package:repaid_loan/models/product_detail_model.dart';
+import 'package:repaid_loan/util/api_util/json_convert_content.dart';
 
 ProductDetailModel $ProductDetailModelFromJson(Map<String, dynamic> json) {
   final ProductDetailModel productDetailModel = ProductDetailModel();
+  final String? logo = jsonConvert.convert<String>(json['logo']);
+  if (logo != null) {
+    productDetailModel.logo = logo;
+  }
+  final String? spaceName = jsonConvert.convert<String>(json['spaceName']);
+  if (spaceName != null) {
+    productDetailModel.spaceName = spaceName;
+  }
   final String? productId = jsonConvert.convert<String>(json['productId']);
   if (productId != null) {
     productDetailModel.productId = productId;
@@ -48,6 +56,8 @@ ProductDetailModel $ProductDetailModelFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> $ProductDetailModelToJson(ProductDetailModel entity) {
   final Map<String, dynamic> data = <String, dynamic>{};
+  data['logo'] = entity.logo;
+  data['spaceName'] = entity.spaceName;
   data['productId'] = entity.productId;
   data['loanAmountStr'] = entity.loanAmountStr;
   data['loanDate'] = entity.loanDate;
@@ -63,6 +73,8 @@ Map<String, dynamic> $ProductDetailModelToJson(ProductDetailModel entity) {
 
 extension ProductDetailModelExtension on ProductDetailModel {
   ProductDetailModel copyWith({
+    String? logo,
+    String? spaceName,
     String? productId,
     String? loanAmountStr,
     String? loanDate,
@@ -75,6 +87,8 @@ extension ProductDetailModelExtension on ProductDetailModel {
     String? repayAmountStr,
   }) {
     return ProductDetailModel()
+      ..logo = logo ?? this.logo
+      ..spaceName = spaceName ?? this.spaceName
       ..productId = productId ?? this.productId
       ..loanAmountStr = loanAmountStr ?? this.loanAmountStr
       ..loanDate = loanDate ?? this.loanDate

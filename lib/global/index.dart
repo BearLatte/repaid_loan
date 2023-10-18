@@ -10,9 +10,17 @@ class Global {
   static const _idfaKey = 'kIdfa';
   static const _loginKey = 'kLogin';
   static const _phoneKey = 'kPhone';
+  static const _appOpenTimeKey = 'kAppOpenTime';
+  static const _storeAppAccount = '';
 
   /// 与原生通信对象
   static const MethodChannel channel = MethodChannel('repaidLoan.app.channel');
+
+  /// 判断测试账号
+  static Future<bool> get isTestAccount async {
+    String? phone = await accountPhone;
+    return phone == _storeAppAccount ?? false;
+  }
 
   /// token
   static Future<String> get accessToken async {
@@ -38,6 +46,19 @@ class Global {
   static Future<String?> get accountPhone async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.getString(_phoneKey);
+  }
+
+  /// 保存app打开时间
+  static void setAppOpenTime() async {
+    int time = DateTime.now().millisecondsSinceEpoch;
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString(_appOpenTimeKey, '$time');
+  }
+
+  /// 获取app打开时间
+  static Future<String?> get appOpenTime async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return preferences.getString(_appOpenTimeKey);
   }
 
   /// 保存 idfa

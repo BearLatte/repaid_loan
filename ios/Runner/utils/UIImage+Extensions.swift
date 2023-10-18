@@ -5,6 +5,8 @@
 //  Created by Tim Guo on 2023/10/13.
 //
 
+import UIKit
+
 extension UIImage {
     func compressImage(maxLength: Int) -> Data {
         // let tempMaxLength: Int = maxLength / 8

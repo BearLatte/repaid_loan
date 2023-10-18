@@ -6,6 +6,7 @@
 import 'package:flutter/material.dart' show debugPrint;
 import 'package:repaid_loan/models/cont_model.dart';
 import 'package:repaid_loan/models/credentials_model.dart';
+import 'package:repaid_loan/models/pay_fail_info_model.dart';
 import 'package:repaid_loan/models/product_detail_model.dart';
 import 'package:repaid_loan/models/product_model.dart';
 import 'package:repaid_loan/util/api_util/api_response.dart';
@@ -87,8 +88,7 @@ class JsonConvert {
     }
   }
 
-  T? _asT<T extends Object?>(dynamic value,
-      {EnumConvertFunction? enumConvert}) {
+  T? _asT<T extends Object?>(dynamic value, {EnumConvertFunction? enumConvert}) {
     final String type = T.toString();
     final String valueS = value.toString();
     if (enumConvert != null) {
@@ -120,7 +120,8 @@ class JsonConvert {
         }
         return convertFuncMap[type]!(Map<String, dynamic>.from(value)) as T;
       } else {
-        throw UnimplementedError('$type unimplemented,you can try running the app again');
+        return fromJsonAsT<T>(value);
+        // throw UnimplementedError('$type unimplemented,you can try running the app again');
       }
     }
   }
@@ -133,6 +134,9 @@ class JsonConvert {
     if (<CredentialsModel>[] is M) {
       return data.map<CredentialsModel>((Map<String, dynamic> e) => CredentialsModel.fromJson(e)).toList() as M;
     }
+    if (<PayFailInfoModel>[] is M) {
+      return data.map<PayFailInfoModel>((Map<String, dynamic> e) => PayFailInfoModel.fromJson(e)).toList() as M;
+    }
     if (<ProductDetailModel>[] is M) {
       return data.map<ProductDetailModel>((Map<String, dynamic> e) => ProductDetailModel.fromJson(e)).toList() as M;
     }
@@ -141,9 +145,6 @@ class JsonConvert {
     }
     if (<ApiResponse>[] is M) {
       return data.map<ApiResponse>((Map<String, dynamic> e) => ApiResponse.fromJson(e)).toList() as M;
-    }
-    if (<ResponseModel>[] is M) {
-      return data.map<ResponseModel>((Map<String, dynamic> e) => ResponseModel.fromJson(e)).toList() as M;
     }
 
     debugPrint("${M.toString()} not found");
@@ -167,10 +168,10 @@ class JsonConvertClassCollection {
   Map<String, JsonConvertFunction> convertFuncMap = {
     (ContModel).toString(): ContModel.fromJson,
     (CredentialsModel).toString(): CredentialsModel.fromJson,
+    (PayFailInfoModel).toString(): PayFailInfoModel.fromJson,
     (ProductDetailModel).toString(): ProductDetailModel.fromJson,
     (ProductModel).toString(): ProductModel.fromJson,
     (ApiResponse).toString(): ApiResponse.fromJson,
-    (ResponseModel).toString(): ResponseModel.fromJson,
   };
 
   bool containsKey(String type) {

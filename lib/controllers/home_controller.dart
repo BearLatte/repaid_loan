@@ -1,5 +1,4 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:repaid_loan/global/index.dart';
 import 'package:repaid_loan/models/cont_model.dart';
@@ -49,6 +48,8 @@ class HomeController extends GetxController {
     ContModel cont = await ApiUtil.checkSpaceDetail(product.id);
     if (cont.userStatus == 1) {
       Get.toNamed(Routes.kycVerify);
+    } else if (cont.userStatus == 2) {
+      Get.toNamed(Routes.productDetail, arguments: {'isRecommend': false, 'product': cont.loanProductVo});
     }
   }
 
@@ -57,7 +58,6 @@ class HomeController extends GetxController {
       Get.toNamed(Routes.login);
       return;
     }
-    debugPrint('DEBUG: 查看订单列表');
   }
 
   void go2changeBankInfo() {
@@ -65,7 +65,13 @@ class HomeController extends GetxController {
       Get.toNamed(Routes.login);
       return;
     }
-    debugPrint('DEBUG: 更改银行卡');
+
+    if (!isVerified) {
+      Get.toNamed(Routes.kycVerify);
+      return;
+    }
+
+    Get.toNamed(Routes.modifyBankAccount);
   }
 
   void go2profile() {

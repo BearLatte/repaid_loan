@@ -1,15 +1,25 @@
 import 'package:get/get.dart';
+import 'package:repaid_loan/controllers/bank_info_controller.dart';
+import 'package:repaid_loan/controllers/contact_info_controller.dart';
 import 'package:repaid_loan/controllers/home_controller.dart';
 import 'package:repaid_loan/controllers/kyc_verify_controller.dart';
 import 'package:repaid_loan/controllers/login_controller.dart';
+import 'package:repaid_loan/controllers/modify_bank_info_controller.dart';
 import 'package:repaid_loan/controllers/personal_info_controller.dart';
+import 'package:repaid_loan/controllers/product_detail_controller.dart';
 import 'package:repaid_loan/controllers/profile_controller.dart';
+import 'package:repaid_loan/controllers/purchase_success_controller.dart';
 import 'package:repaid_loan/views/about_us_view.dart';
+import 'package:repaid_loan/views/authentication/bank_info_view.dart';
+import 'package:repaid_loan/views/authentication/contact_info_view.dart';
 import 'package:repaid_loan/views/authentication/kyc_front_example_view.dart';
 import 'package:repaid_loan/views/authentication/kyc_verify_view.dart';
 import 'package:repaid_loan/views/authentication/personal_info_view.dart';
 import 'package:repaid_loan/views/login_view.dart';
+import 'package:repaid_loan/views/modify_bank_info_view.dart';
+import 'package:repaid_loan/views/product_detail_view.dart';
 import 'package:repaid_loan/views/profile_view.dart';
+import 'package:repaid_loan/views/purchase_success_view.dart';
 
 import '../views/home_view.dart';
 
@@ -28,6 +38,18 @@ class Routes {
 
   /// 联系人认证
   static const String contactsInfo = '/contactInfo';
+
+  /// 银行卡认证
+  static const String bankCardInfo = '/bankCardInfo';
+
+  /// 产品详情
+  static const String productDetail = '/productDetail';
+
+  /// 下单成功页面
+  static const String purchaseSuccess = '/purchaseSuccess';
+
+  /// 修改银行账号
+  static const String modifyBankAccount = '/modifyBankAccount';
 
   /// 个人中心
   static const String profile = '/profile';
@@ -61,11 +83,41 @@ class Routes {
       binding: BindingsBuilder(() => Get.lazyPut(() => PersonalInfoController())),
     ),
     GetPage(
+      name: contactsInfo,
+      transition: Transition.cupertino,
+      page: () => const ContactInfoView(),
+      binding: BindingsBuilder(() => Get.lazyPut(() => ContactInfoController())),
+    ),
+    GetPage(
+      name: bankCardInfo,
+      transition: Transition.cupertino,
+      page: () => const BankInfoView(),
+      binding: BindingsBuilder(() => Get.lazyPut(() => BankInfoController())),
+    ),
+    GetPage(
+      name: Routes.productDetail,
+      transition: Transition.cupertino,
+      page: () => const ProductDetailView(),
+      binding: BindingsBuilder(() => Get.lazyPut(() => ProductDetailController())),
+    ),
+    GetPage(
+      name: purchaseSuccess,
+      transition: Transition.cupertino,
+      page: () => const PurchaseSuccessView(),
+      binding: BindingsBuilder(() => Get.lazyPut(() => PurchaseSuccessController())),
+    ),
+    GetPage(
       name: profile,
       transition: Transition.cupertino,
       page: () => const ProfileView(),
       binding: BindingsBuilder(() => Get.lazyPut(() => ProfileController())),
     ),
-    GetPage(name: Routes.aboutUs, page: () => const AboutUsView(), transition: Transition.cupertino)
+    GetPage(name: aboutUs, page: () => const AboutUsView(), transition: Transition.cupertino),
+    GetPage(
+      name: modifyBankAccount,
+      transition: Transition.cupertino,
+      page: () => const ModifyBankInfoView(),
+      binding: BindingsBuilder(() => Get.lazyPut(() => ModifyBankInfoController())),
+    ),
   ];
 }

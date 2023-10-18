@@ -23,6 +23,14 @@ class HomeView extends StatelessWidget {
             extendBodyBehindAppBar: true,
             body: Column(
               children: [
+                // SizedBox(
+                //   width: double.infinity,
+                //   height: 200,
+                //   child: ElevatedButton(
+                //     onPressed: () => Get.toNamed(Routes.bankCardInfo),
+                //     child: const Text('Test', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
+                //   ),
+                // ),
                 CommonImage(
                   src: controller.isVerified ? 'assets/images/verified_banner.png' : 'assets/images/banner.png',
                   width: double.infinity,
