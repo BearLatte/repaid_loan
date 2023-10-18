@@ -5,6 +5,8 @@ import 'package:repaid_loan/controllers/home_controller.dart';
 import 'package:repaid_loan/controllers/kyc_verify_controller.dart';
 import 'package:repaid_loan/controllers/login_controller.dart';
 import 'package:repaid_loan/controllers/modify_bank_info_controller.dart';
+import 'package:repaid_loan/controllers/order_detail_controller.dart';
+import 'package:repaid_loan/controllers/order_list_controller.dart';
 import 'package:repaid_loan/controllers/personal_info_controller.dart';
 import 'package:repaid_loan/controllers/product_detail_controller.dart';
 import 'package:repaid_loan/controllers/profile_controller.dart';
@@ -17,6 +19,8 @@ import 'package:repaid_loan/views/authentication/kyc_verify_view.dart';
 import 'package:repaid_loan/views/authentication/personal_info_view.dart';
 import 'package:repaid_loan/views/login_view.dart';
 import 'package:repaid_loan/views/modify_bank_info_view.dart';
+import 'package:repaid_loan/views/order_detail_view.dart';
+import 'package:repaid_loan/views/order_list_view.dart';
 import 'package:repaid_loan/views/product_detail_view.dart';
 import 'package:repaid_loan/views/profile_view.dart';
 import 'package:repaid_loan/views/purchase_success_view.dart';
@@ -59,6 +63,12 @@ class Routes {
 
   /// 登录
   static const String login = '/login';
+
+  /// 订单列表
+  static const String orderList = '/orderList';
+
+  /// 订单详情
+  static const String orderDetail = '/orderDetail';
 
   static List<GetPage> pages = [
     GetPage(name: home, page: () => const HomeView(), binding: BindingsBuilder(() => Get.lazyPut(() => HomeController()))),
@@ -118,6 +128,18 @@ class Routes {
       transition: Transition.cupertino,
       page: () => const ModifyBankInfoView(),
       binding: BindingsBuilder(() => Get.lazyPut(() => ModifyBankInfoController())),
+    ),
+    GetPage(
+      name: orderDetail,
+      transition: Transition.cupertino,
+      page: () => const OrderDetailView(),
+      binding: BindingsBuilder(() => Get.lazyPut(() => OrderDetailController())),
+    ),
+    GetPage(
+      name: orderList,
+      transition: Transition.cupertino,
+      page: () => const OrderListView(),
+      binding: BindingsBuilder(() => Get.lazyPut(() => OrderListController())),
     ),
   ];
 }

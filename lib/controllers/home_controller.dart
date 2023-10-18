@@ -68,6 +68,8 @@ class HomeController extends GetxController {
       Get.toNamed(Routes.login);
       return;
     }
+
+    Get.toNamed(Routes.orderList);
   }
 
   void go2changeBankInfo() {
