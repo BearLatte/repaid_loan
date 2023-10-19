@@ -6,6 +6,7 @@
 import 'package:flutter/material.dart' show debugPrint;
 import 'package:repaid_loan/models/cont_model.dart';
 import 'package:repaid_loan/models/credentials_model.dart';
+import 'package:repaid_loan/models/order_model.dart';
 import 'package:repaid_loan/models/pay_fail_info_model.dart';
 import 'package:repaid_loan/models/product_detail_model.dart';
 import 'package:repaid_loan/models/product_model.dart';
@@ -120,8 +121,7 @@ class JsonConvert {
         }
         return convertFuncMap[type]!(Map<String, dynamic>.from(value)) as T;
       } else {
-        return fromJsonAsT<T>(value);
-        // throw UnimplementedError('$type unimplemented,you can try running the app again');
+        throw UnimplementedError('$type unimplemented,you can try running the app again');
       }
     }
   }
@@ -133,6 +133,9 @@ class JsonConvert {
     }
     if (<CredentialsModel>[] is M) {
       return data.map<CredentialsModel>((Map<String, dynamic> e) => CredentialsModel.fromJson(e)).toList() as M;
+    }
+    if (<OrderModel>[] is M) {
+      return data.map<OrderModel>((Map<String, dynamic> e) => OrderModel.fromJson(e)).toList() as M;
     }
     if (<PayFailInfoModel>[] is M) {
       return data.map<PayFailInfoModel>((Map<String, dynamic> e) => PayFailInfoModel.fromJson(e)).toList() as M;
@@ -168,6 +171,7 @@ class JsonConvertClassCollection {
   Map<String, JsonConvertFunction> convertFuncMap = {
     (ContModel).toString(): ContModel.fromJson,
     (CredentialsModel).toString(): CredentialsModel.fromJson,
+    (OrderModel).toString(): OrderModel.fromJson,
     (PayFailInfoModel).toString(): PayFailInfoModel.fromJson,
     (ProductDetailModel).toString(): ProductDetailModel.fromJson,
     (ProductModel).toString(): ProductModel.fromJson,

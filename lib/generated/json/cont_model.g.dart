@@ -1,10 +1,11 @@
+import 'package:repaid_loan/generated/json/base/json_convert_content.dart';
 import 'package:repaid_loan/models/cont_model.dart';
 import 'package:repaid_loan/models/pay_fail_info_model.dart';
 import 'package:repaid_loan/models/product_detail_model.dart';
 import 'package:repaid_loan/models/product_model.dart';
-import 'package:repaid_loan/util/api_util//json_convert_content.dart';
 
 import '../../models/credentials_model.dart';
+import '../../models/order_model.dart';
 
 ContModel $ContModelFromJson(Map<String, dynamic> json) {
   final ContModel contModel = ContModel();
@@ -36,6 +37,14 @@ ContModel $ContModelFromJson(Map<String, dynamic> json) {
   if (userPayFail != null) {
     contModel.userPayFail = userPayFail;
   }
+  final int? frozenDays = jsonConvert.convert<int>(json['frozenDays']);
+  if (frozenDays != null) {
+    contModel.frozenDays = frozenDays;
+  }
+  final int? isExtend = jsonConvert.convert<int>(json['isExtend']);
+  if (isExtend != null) {
+    contModel.isExtend = isExtend;
+  }
   final String? url = jsonConvert.convert<String>(json['url']);
   if (url != null) {
     contModel.url = url;
@@ -51,6 +60,18 @@ ContModel $ContModelFromJson(Map<String, dynamic> json) {
   final CredentialsModel? credentials = jsonConvert.convert<CredentialsModel>(json['credentials']);
   if (credentials != null) {
     contModel.credentials = credentials;
+  }
+  final String? path = jsonConvert.convert<String>(json['path']);
+  if (path != null) {
+    contModel.path = path;
+  }
+  final String? h5 = jsonConvert.convert<String>(json['h5']);
+  if (h5 != null) {
+    contModel.h5 = h5;
+  }
+  final int? webview = jsonConvert.convert<int>(json['webview']);
+  if (webview != null) {
+    contModel.webview = webview;
   }
   final String? frontImg = jsonConvert.convert<String>(json['frontImg']);
   if (frontImg != null) {
@@ -200,6 +221,10 @@ ContModel $ContModelFromJson(Map<String, dynamic> json) {
   if (userPayFailInfo != null) {
     contModel.userPayFailInfo = userPayFailInfo;
   }
+  final OrderModel? loanAuditOrderVo = jsonConvert.convert<OrderModel>(json['loanAuditOrderVo']);
+  if (loanAuditOrderVo != null) {
+    contModel.loanAuditOrderVo = loanAuditOrderVo;
+  }
   return contModel;
 }
 
@@ -212,10 +237,15 @@ Map<String, dynamic> $ContModelToJson(ContModel entity) {
   data['userLiveness'] = entity.userLiveness;
   data['isFirstApply'] = entity.isFirstApply;
   data['userPayFail'] = entity.userPayFail;
+  data['frozenDays'] = entity.frozenDays;
+  data['isExtend'] = entity.isExtend;
   data['url'] = entity.url;
   data['region'] = entity.region;
   data['bucket'] = entity.bucket;
   data['credentials'] = entity.credentials?.toJson();
+  data['path'] = entity.path;
+  data['h5'] = entity.h5;
+  data['webview'] = entity.webview;
   data['frontImg'] = entity.frontImg;
   data['backImg'] = entity.backImg;
   data['panCardImg'] = entity.panCardImg;
@@ -253,6 +283,7 @@ Map<String, dynamic> $ContModelToJson(ContModel entity) {
   data['loanProductList'] = entity.loanProductList?.map((v) => v.toJson()).toList();
   data['loanProductVo'] = entity.loanProductVo?.toJson();
   data['userPayFailInfo'] = entity.userPayFailInfo?.toJson();
+  data['loanAuditOrderVo'] = entity.loanAuditOrderVo?.toJson();
   return data;
 }
 
@@ -265,10 +296,15 @@ extension ContModelExtension on ContModel {
     int? userLiveness,
     int? isFirstApply,
     int? userPayFail,
+    int? frozenDays,
+    int? isExtend,
     String? url,
     String? region,
     String? bucket,
     CredentialsModel? credentials,
+    String? path,
+    String? h5,
+    int? webview,
     String? frontImg,
     String? backImg,
     String? panCardImg,
@@ -306,6 +342,7 @@ extension ContModelExtension on ContModel {
     List<ProductModel>? loanProductList,
     ProductDetailModel? loanProductVo,
     PayFailInfoModel? userPayFailInfo,
+    OrderModel? loanAuditOrderVo,
   }) {
     return ContModel()
       ..uid = uid ?? this.uid
@@ -315,10 +352,15 @@ extension ContModelExtension on ContModel {
       ..userLiveness = userLiveness ?? this.userLiveness
       ..isFirstApply = isFirstApply ?? this.isFirstApply
       ..userPayFail = userPayFail ?? this.userPayFail
+      ..frozenDays = frozenDays ?? this.frozenDays
+      ..isExtend = isExtend ?? this.isExtend
       ..url = url ?? this.url
       ..region = region ?? this.region
       ..bucket = bucket ?? this.bucket
       ..credentials = credentials ?? this.credentials
+      ..path = path ?? this.path
+      ..h5 = h5 ?? this.h5
+      ..webview = webview ?? this.webview
       ..frontImg = frontImg ?? this.frontImg
       ..backImg = backImg ?? this.backImg
       ..panCardImg = panCardImg ?? this.panCardImg
@@ -355,6 +397,7 @@ extension ContModelExtension on ContModel {
       ..relationList = relationList ?? this.relationList
       ..loanProductList = loanProductList ?? this.loanProductList
       ..loanProductVo = loanProductVo ?? this.loanProductVo
-      ..userPayFailInfo = userPayFailInfo ?? this.userPayFailInfo;
+      ..userPayFailInfo = userPayFailInfo ?? this.userPayFailInfo
+      ..loanAuditOrderVo = loanAuditOrderVo ?? this.loanAuditOrderVo;
   }
 }

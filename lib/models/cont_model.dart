@@ -7,6 +7,7 @@ import 'package:repaid_loan/models/product_detail_model.dart';
 import 'package:repaid_loan/models/product_model.dart';
 
 import 'credentials_model.dart';
+import 'order_model.dart';
 
 export 'package:repaid_loan/generated/json/cont_model.g.dart';
 
@@ -19,12 +20,19 @@ class ContModel {
   int? userLiveness;
   int? isFirstApply;
   int? userPayFail;
+  int? frozenDays;
+  int? isExtend;
 
   // OSS 图片上传相关
   String? url;
   String? region;
   String? bucket;
   CredentialsModel? credentials;
+
+  // 还款路径
+  String? path;
+  String? h5;
+  int? webview;
 
   // OCR 识别模型
   String? frontImg;
@@ -68,6 +76,7 @@ class ContModel {
   List<ProductModel>? loanProductList;
   ProductDetailModel? loanProductVo;
   PayFailInfoModel? userPayFailInfo;
+  OrderModel? loanAuditOrderVo;
 
   ContModel();
 

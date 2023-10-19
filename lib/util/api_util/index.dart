@@ -6,6 +6,7 @@ import 'package:repaid_loan/models/bank_info_model.dart';
 import 'package:repaid_loan/models/cont_model.dart';
 import 'package:repaid_loan/models/contacts_model.dart';
 import 'package:repaid_loan/models/kyc_model.dart';
+import 'package:repaid_loan/models/order_model.dart';
 import 'package:repaid_loan/models/personal_info_model.dart';
 import 'package:repaid_loan/models/product_model.dart';
 import 'package:repaid_loan/util/api_util/response_model.dart';
@@ -139,6 +140,24 @@ class ApiUtil {
   static Future<ResponseModel<ProductModel>> uploadDeviceInfoAndPurchaseProduct(Map<String, dynamic> params) async {
     ResponseModel<ProductModel> response = await _baseRequest<ProductModel>('/XeGRdX/OCaKry/zXsxwxEE', params: params);
     return response;
+  }
+
+  // 获取订单列表
+  static Future<ResponseModel<OrderModel>> fetchOrders(Map<String, dynamic> params) async => await _baseRequest<OrderModel>('/XeGRdX/OCaKry/UCgFxW', params: params);
+
+  // 订单详情
+  static Future<ResponseModel<ProductModel>> fetchOrderDetail(String orderNumber) async => _baseRequest<ProductModel>('/XeGRdX/OCaKry/xoEppsP', params: {'auditOrderNo': orderNumber});
+
+  // 获取是否展示 ExtensionBtn
+  static Future<bool> fetchExtensionBtnVisible(String orderNumber, {String repayType = 'extend'}) async {
+    ResponseModel response = await _baseRequest('/XeGRdX/OCaKry/nCAnGhb', params: {'orderNo': orderNumber, 'repayType': repayType});
+    ContModel? cont = response.cont;
+    return cont?.isExtend == 1;
+  }
+
+  static Future<String?> fetchRepayPath(String orderNumber) async {
+    ResponseModel response = await _baseRequest('/XeGRdX/OCaKry/LMGkgi', params: {'orderNo': orderNumber});
+    return response.cont?.path;
   }
 
   // 图片上传

@@ -1,5 +1,5 @@
+import 'package:repaid_loan/generated/json/base/json_convert_content.dart';
 import 'package:repaid_loan/models/product_model.dart';
-import 'package:repaid_loan/util/api_util//json_convert_content.dart';
 
 ProductModel $ProductModelFromJson(Map<String, dynamic> json) {
   final ProductModel productModel = ProductModel();

@@ -1,4 +1,4 @@
-import 'package:repaid_loan/util/api_util//json_convert_content.dart';
+import 'package:repaid_loan/generated/json/base/json_convert_content.dart';
 import 'package:repaid_loan/util/api_util/api_response.dart';
 import 'package:repaid_loan/util/api_util/response_model.dart';
 

@@ -24,6 +24,7 @@ import 'package:repaid_loan/views/order_list_view.dart';
 import 'package:repaid_loan/views/product_detail_view.dart';
 import 'package:repaid_loan/views/profile_view.dart';
 import 'package:repaid_loan/views/purchase_success_view.dart';
+import 'package:repaid_loan/views/repay_extension_view.dart';
 
 import '../views/home_view.dart';
 
@@ -69,6 +70,9 @@ class Routes {
 
   /// 订单详情
   static const String orderDetail = '/orderDetail';
+
+  /// 展期还款页面
+  static const String extensionView = '/extensionView';
 
   static List<GetPage> pages = [
     GetPage(name: home, page: () => const HomeView(), binding: BindingsBuilder(() => Get.lazyPut(() => HomeController()))),
@@ -141,5 +145,6 @@ class Routes {
       page: () => const OrderListView(),
       binding: BindingsBuilder(() => Get.lazyPut(() => OrderListController())),
     ),
+    GetPage(name: extensionView, transition: Transition.cupertino, page: () => const RepayExtensionView())
   ];
 }
