@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:focus_detector/focus_detector.dart';
 import 'package:get/get.dart';
 import 'package:repaid_loan/common/base_view.dart';
 import 'package:repaid_loan/common/common_image.dart';
@@ -21,31 +22,34 @@ class ProfileView extends StatelessWidget {
             color: Colors.white,
             borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
           ),
-          child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-            Container(
-              padding: const EdgeInsets.only(bottom: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  CommonImage(src: controller.isLogin ? 'assets/icons/login_logo.png' : 'assets/icons/not_login_logo.png'),
-                  Container(
-                    padding: const EdgeInsets.only(left: 14),
-                    child: Text(controller.accountText, style: TextStyle(color: ColorsUtil.hexColor(0x333333), fontSize: 20)),
-                  ),
-                ],
-              ),
-            ),
-            profileItemCell('Feedback', icon: 'assets/icons/feedback_icon.png', onPressed: controller.feedbackOnPressed),
-            profileItemCell('Privacy Policy', icon: 'assets/icons/privacy_icon.png', onPressed: controller.privacyOnPressed),
-            profileItemCell('About Us', icon: 'assets/icons/about_us_icon.png', onPressed: controller.aboutUsOnPressed),
-            if (controller.isLogin) profileItemCell('Delete account', icon: 'assets/icons/delete_icon.png', onPressed: controller.logout),
-            const Spacer(),
-            if (controller.isLogin)
+          child: FocusDetector(
+            onFocusGained: controller.checkoutInfo,
+            child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
               Container(
-                decoration: BoxDecoration(color: ColorsUtil.hexColor(0xE2E2E2), borderRadius: BorderRadius.circular(10)),
-                child: TextButton(onPressed: controller.logout, child: const Text('Logout', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600))),
+                padding: const EdgeInsets.only(bottom: 30),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    CommonImage(src: controller.isLogin ? 'assets/icons/login_logo.png' : 'assets/icons/not_login_logo.png'),
+                    Container(
+                      padding: const EdgeInsets.only(left: 14),
+                      child: Text(controller.accountText, style: TextStyle(color: ColorsUtil.hexColor(0x333333), fontSize: 20)),
+                    ),
+                  ],
+                ),
               ),
-          ]),
+              profileItemCell('Feedback', icon: 'assets/icons/feedback_icon.png', onPressed: controller.feedbackOnPressed),
+              profileItemCell('Privacy Policy', icon: 'assets/icons/privacy_icon.png', onPressed: controller.privacyOnPressed),
+              profileItemCell('About Us', icon: 'assets/icons/about_us_icon.png', onPressed: controller.aboutUsOnPressed),
+              if (controller.isLogin) profileItemCell('Delete account', icon: 'assets/icons/delete_icon.png', onPressed: controller.logout),
+              const Spacer(),
+              if (controller.isLogin)
+                Container(
+                  decoration: BoxDecoration(color: ColorsUtil.hexColor(0xE2E2E2), borderRadius: BorderRadius.circular(10)),
+                  child: TextButton(onPressed: controller.logout, child: const Text('Logout', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600))),
+                ),
+            ]),
+          ),
         ),
       );
     });

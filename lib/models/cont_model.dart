@@ -13,6 +13,7 @@ export 'package:repaid_loan/generated/json/cont_model.g.dart';
 
 @JsonSerializable()
 class ContModel {
+  String? phone;
   String? uid;
   String? token;
   int? isLogin;
@@ -33,6 +34,12 @@ class ContModel {
   String? path;
   String? h5;
   int? webview;
+
+  int? isExtendIng;
+  String? extendFee;
+  int? extendDate;
+  String? extendRepayDate;
+  String? extendRepayAmount;
 
   // OCR 识别模型
   String? frontImg;
@@ -77,6 +84,7 @@ class ContModel {
   ProductDetailModel? loanProductVo;
   PayFailInfoModel? userPayFailInfo;
   OrderModel? loanAuditOrderVo;
+  List<String>? feedBackTypeList;
 
   ContModel();
 

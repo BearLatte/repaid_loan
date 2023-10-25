@@ -74,9 +74,16 @@ class OrderDetailController extends GetxController {
   }
 
   void extensionBtnOnPressed() async {
-    String? result = await CommonAlert.showAlert(message: 'Paying a small amount admission fee. You can pay the whole bill later.');
+    String? result = await CommonAlert.showAlert(
+      message: 'Paying a small amount admission fee. You can pay the whole bill later.',
+      isShowTitle: false,
+    );
     if (result == 'ok') {
-      Get.toNamed(Routes.extensionView);
+      Get.toNamed(Routes.extensionView, arguments: {
+        'orderNumber': order?.loanOrderNo,
+        'logo': order?.logo,
+        'productName': order?.loanName,
+      });
     }
   }
 

@@ -1,6 +1,9 @@
 import 'package:get/get.dart';
 import 'package:repaid_loan/controllers/bank_info_controller.dart';
+import 'package:repaid_loan/controllers/config_feedback_controller.dart';
 import 'package:repaid_loan/controllers/contact_info_controller.dart';
+import 'package:repaid_loan/controllers/extension_pay_controller.dart';
+import 'package:repaid_loan/controllers/feedback_list_controller.dart';
 import 'package:repaid_loan/controllers/home_controller.dart';
 import 'package:repaid_loan/controllers/kyc_verify_controller.dart';
 import 'package:repaid_loan/controllers/login_controller.dart';
@@ -17,6 +20,9 @@ import 'package:repaid_loan/views/authentication/contact_info_view.dart';
 import 'package:repaid_loan/views/authentication/kyc_front_example_view.dart';
 import 'package:repaid_loan/views/authentication/kyc_verify_view.dart';
 import 'package:repaid_loan/views/authentication/personal_info_view.dart';
+import 'package:repaid_loan/views/config_feedback_view.dart';
+import 'package:repaid_loan/views/feedback_detail_view.dart';
+import 'package:repaid_loan/views/feedback_list_view.dart';
 import 'package:repaid_loan/views/login_view.dart';
 import 'package:repaid_loan/views/modify_bank_info_view.dart';
 import 'package:repaid_loan/views/order_detail_view.dart';
@@ -73,6 +79,15 @@ class Routes {
 
   /// 展期还款页面
   static const String extensionView = '/extensionView';
+
+  /// 反馈列表页
+  static const String feedbackList = '/feedbackList';
+
+  /// 添加反馈页面
+  static const String configFeedback = '/configFeedback';
+
+  /// 反馈详情页面
+  static const String feedbackDetail = '/feedbackDetail';
 
   static List<GetPage> pages = [
     GetPage(name: home, page: () => const HomeView(), binding: BindingsBuilder(() => Get.lazyPut(() => HomeController()))),
@@ -145,6 +160,24 @@ class Routes {
       page: () => const OrderListView(),
       binding: BindingsBuilder(() => Get.lazyPut(() => OrderListController())),
     ),
-    GetPage(name: extensionView, transition: Transition.cupertino, page: () => const RepayExtensionView())
+    GetPage(
+      name: extensionView,
+      transition: Transition.cupertino,
+      page: () => const RepayExtensionView(),
+      binding: BindingsBuilder(() => Get.lazyPut(() => ExtensionPayController())),
+    ),
+    GetPage(
+      name: feedbackList,
+      transition: Transition.cupertino,
+      page: () => const FeedbackListView(),
+      binding: BindingsBuilder(() => Get.lazyPut(() => FeedbackListController())),
+    ),
+    GetPage(
+      name: configFeedback,
+      transition: Transition.cupertino,
+      page: () => ConfigFeedbackView(),
+      binding: BindingsBuilder(() => Get.lazyPut(() => ConfigFeedbackController())),
+    ),
+    GetPage(name: feedbackDetail, transition: Transition.cupertino, page: () => const FeedbackDetailView()),
   ];
 }

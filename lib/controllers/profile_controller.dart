@@ -21,7 +21,12 @@ class ProfileController extends GetxController {
     update();
   }
 
-  void feedbackOnPressed() {
+  void feedbackOnPressed() async {
+    if (await Global.isLogin) {
+      Get.toNamed(Routes.feedbackList);
+    } else {
+      Get.toNamed(Routes.login);
+    }
     debugPrint('DEBUG: 点击 Feedback');
   }
 

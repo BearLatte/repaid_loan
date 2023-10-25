@@ -62,7 +62,6 @@ class OrderModel {
       case 6:
       case 7:
         return ColorsUtil.hexColor(0xF73DED);
-
       case 8:
       case 9:
         return ColorsUtil.hexColor(0x999999);

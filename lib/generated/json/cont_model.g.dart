@@ -9,6 +9,10 @@ import '../../models/order_model.dart';
 
 ContModel $ContModelFromJson(Map<String, dynamic> json) {
   final ContModel contModel = ContModel();
+  final String? phone = jsonConvert.convert<String>(json['phone']);
+  if (phone != null) {
+    contModel.phone = phone;
+  }
   final String? uid = jsonConvert.convert<String>(json['uid']);
   if (uid != null) {
     contModel.uid = uid;
@@ -72,6 +76,26 @@ ContModel $ContModelFromJson(Map<String, dynamic> json) {
   final int? webview = jsonConvert.convert<int>(json['webview']);
   if (webview != null) {
     contModel.webview = webview;
+  }
+  final int? isExtendIng = jsonConvert.convert<int>(json['isExtendIng']);
+  if (isExtendIng != null) {
+    contModel.isExtendIng = isExtendIng;
+  }
+  final String? extendFee = jsonConvert.convert<String>(json['extendFee']);
+  if (extendFee != null) {
+    contModel.extendFee = extendFee;
+  }
+  final int? extendDate = jsonConvert.convert<int>(json['extendDate']);
+  if (extendDate != null) {
+    contModel.extendDate = extendDate;
+  }
+  final String? extendRepayDate = jsonConvert.convert<String>(json['extendRepayDate']);
+  if (extendRepayDate != null) {
+    contModel.extendRepayDate = extendRepayDate;
+  }
+  final String? extendRepayAmount = jsonConvert.convert<String>(json['extendRepayAmount']);
+  if (extendRepayAmount != null) {
+    contModel.extendRepayAmount = extendRepayAmount;
   }
   final String? frontImg = jsonConvert.convert<String>(json['frontImg']);
   if (frontImg != null) {
@@ -225,11 +249,16 @@ ContModel $ContModelFromJson(Map<String, dynamic> json) {
   if (loanAuditOrderVo != null) {
     contModel.loanAuditOrderVo = loanAuditOrderVo;
   }
+  final List<String>? feedBackTypeList = (json['feedBackTypeList'] as List<dynamic>?)?.map((e) => jsonConvert.convert<String>(e) as String).toList();
+  if (feedBackTypeList != null) {
+    contModel.feedBackTypeList = feedBackTypeList;
+  }
   return contModel;
 }
 
 Map<String, dynamic> $ContModelToJson(ContModel entity) {
   final Map<String, dynamic> data = <String, dynamic>{};
+  data['phone'] = entity.phone;
   data['uid'] = entity.uid;
   data['token'] = entity.token;
   data['isLogin'] = entity.isLogin;
@@ -246,6 +275,11 @@ Map<String, dynamic> $ContModelToJson(ContModel entity) {
   data['path'] = entity.path;
   data['h5'] = entity.h5;
   data['webview'] = entity.webview;
+  data['isExtendIng'] = entity.isExtendIng;
+  data['extendFee'] = entity.extendFee;
+  data['extendDate'] = entity.extendDate;
+  data['extendRepayDate'] = entity.extendRepayDate;
+  data['extendRepayAmount'] = entity.extendRepayAmount;
   data['frontImg'] = entity.frontImg;
   data['backImg'] = entity.backImg;
   data['panCardImg'] = entity.panCardImg;
@@ -284,11 +318,13 @@ Map<String, dynamic> $ContModelToJson(ContModel entity) {
   data['loanProductVo'] = entity.loanProductVo?.toJson();
   data['userPayFailInfo'] = entity.userPayFailInfo?.toJson();
   data['loanAuditOrderVo'] = entity.loanAuditOrderVo?.toJson();
+  data['feedBackTypeList'] = entity.feedBackTypeList;
   return data;
 }
 
 extension ContModelExtension on ContModel {
   ContModel copyWith({
+    String? phone,
     String? uid,
     String? token,
     int? isLogin,
@@ -305,6 +341,11 @@ extension ContModelExtension on ContModel {
     String? path,
     String? h5,
     int? webview,
+    int? isExtendIng,
+    String? extendFee,
+    int? extendDate,
+    String? extendRepayDate,
+    String? extendRepayAmount,
     String? frontImg,
     String? backImg,
     String? panCardImg,
@@ -343,8 +384,10 @@ extension ContModelExtension on ContModel {
     ProductDetailModel? loanProductVo,
     PayFailInfoModel? userPayFailInfo,
     OrderModel? loanAuditOrderVo,
+    List<String>? feedBackTypeList,
   }) {
     return ContModel()
+      ..phone = phone ?? this.phone
       ..uid = uid ?? this.uid
       ..token = token ?? this.token
       ..isLogin = isLogin ?? this.isLogin
@@ -361,6 +404,11 @@ extension ContModelExtension on ContModel {
       ..path = path ?? this.path
       ..h5 = h5 ?? this.h5
       ..webview = webview ?? this.webview
+      ..isExtendIng = isExtendIng ?? this.isExtendIng
+      ..extendFee = extendFee ?? this.extendFee
+      ..extendDate = extendDate ?? this.extendDate
+      ..extendRepayDate = extendRepayDate ?? this.extendRepayDate
+      ..extendRepayAmount = extendRepayAmount ?? this.extendRepayAmount
       ..frontImg = frontImg ?? this.frontImg
       ..backImg = backImg ?? this.backImg
       ..panCardImg = panCardImg ?? this.panCardImg
@@ -398,6 +446,7 @@ extension ContModelExtension on ContModel {
       ..loanProductList = loanProductList ?? this.loanProductList
       ..loanProductVo = loanProductVo ?? this.loanProductVo
       ..userPayFailInfo = userPayFailInfo ?? this.userPayFailInfo
-      ..loanAuditOrderVo = loanAuditOrderVo ?? this.loanAuditOrderVo;
+      ..loanAuditOrderVo = loanAuditOrderVo ?? this.loanAuditOrderVo
+      ..feedBackTypeList = feedBackTypeList ?? this.feedBackTypeList;
   }
 }

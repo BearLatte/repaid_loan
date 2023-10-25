@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:date_format/date_format.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:repaid_loan/common/common_snack_bar.dart';
@@ -5,6 +7,7 @@ import 'package:repaid_loan/global/index.dart';
 import 'package:repaid_loan/models/bank_info_model.dart';
 import 'package:repaid_loan/models/cont_model.dart';
 import 'package:repaid_loan/models/contacts_model.dart';
+import 'package:repaid_loan/models/feedback_model.dart';
 import 'package:repaid_loan/models/kyc_model.dart';
 import 'package:repaid_loan/models/order_model.dart';
 import 'package:repaid_loan/models/personal_info_model.dart';
@@ -155,9 +158,36 @@ class ApiUtil {
     return cont?.isExtend == 1;
   }
 
-  static Future<String?> fetchRepayPath(String orderNumber) async {
-    ResponseModel response = await _baseRequest('/XeGRdX/OCaKry/LMGkgi', params: {'orderNo': orderNumber});
+  static Future<String?> fetchRepayPath(String orderNumber, {String repayType = 'all'}) async {
+    ResponseModel response = await _baseRequest('/XeGRdX/OCaKry/LMGkgi', params: {
+      'orderNo': orderNumber,
+      'repayType': repayType,
+    });
     return response.cont?.path;
+  }
+
+  static Future<ContModel?> fetchExtensionPayInfo(String? orderNumber) async {
+    ResponseModel response = await _baseRequest('/XeGRdX/OCaKry/SOQkc', params: {'orderNo': orderNumber});
+    return response.cont;
+  }
+
+  // 获取反馈列表
+  static Future<List<FeedbackModel>> fetchFeedbackList() async {
+    ResponseModel<FeedbackModel> response = await _baseRequest<FeedbackModel>('/XeGRdX/OCaKry/oxYjIO');
+    return response.list ?? [];
+  }
+
+  // 获取反馈参数
+  static Future<ContModel?> fetchFeedbackParams() async {
+    ResponseModel response = await _baseRequest('/XeGRdX/OCaKry/oxYjIO');
+    return response.cont;
+  }
+
+  static Future<void> saveFeedback({required String phone, required String productId, required String feedBackType, required String feedBackContent, required List<String> feedBackImg}) async {
+    Map<String, dynamic> params = {'phone': phone, 'productId': productId, 'feedBackType': feedBackType, 'feedBackContent': feedBackContent};
+    if (feedBackImg.isNotEmpty) params['feedBackImg'] = jsonEncode(feedBackImg);
+    await _baseRequest('/XeGRdX/OCaKry/NcKIgs', params: params);
+    return Future.value();
   }
 
   // 图片上传

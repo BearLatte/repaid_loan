@@ -16,30 +16,30 @@ class OrderDetailView extends StatelessWidget {
       builder: (controller) {
         return FocusDetector(
           onFocusGained: () => controller.getOrderDetail(Get.arguments),
-          child: controller.order == null
-              ? Container()
-              : BaseView(
-                  title: controller.title,
-                  extendBodyBehindAppBar: true,
-                  background: Container(color: ColorsUtil.hexColor(0x00AD8E)),
-                  body: SafeArea(
-                    bottom: false,
-                    child: Column(
-                      children: [
-                        if (controller.indicatorText != null)
-                          Container(
-                            padding: const EdgeInsets.fromLTRB(20, 14, 20, 12),
-                            child: Text(
-                              controller.indicatorText!,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(color: Colors.white, fontSize: 18),
-                            ),
-                          ),
-                        Expanded(
-                          child: Container(
-                            padding: const EdgeInsets.only(top: 20),
-                            decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30))),
-                            child: Column(
+          child: BaseView(
+            title: controller.title,
+            extendBodyBehindAppBar: true,
+            background: Container(color: ColorsUtil.hexColor(0x00AD8E)),
+            body: SafeArea(
+              bottom: false,
+              child: Column(
+                children: [
+                  if (controller.indicatorText != null)
+                    Container(
+                      padding: const EdgeInsets.fromLTRB(20, 14, 20, 12),
+                      child: Text(
+                        controller.indicatorText!,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                    ),
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.only(top: 20),
+                      decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30))),
+                      child: controller.order == null
+                          ? Container()
+                          : Column(
                               children: [
                                 if (controller.detailType != OrderDetailType.throughFrozen) orderInfoView(controller),
                                 if (controller.detailType != OrderDetailType.disbursingFailed &&
@@ -50,12 +50,12 @@ class OrderDetailView extends StatelessWidget {
                                   Expanded(child: Container(child: repayBtnExtensionView(controller)))
                               ],
                             ),
-                          ),
-                        )
-                      ],
                     ),
-                  ),
-                ),
+                  )
+                ],
+              ),
+            ),
+          ),
         );
       },
     );
