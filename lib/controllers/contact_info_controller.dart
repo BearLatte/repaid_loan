@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:repaid_loan/common/common_snack_bar.dart';
 import 'package:repaid_loan/global/index.dart';
+import 'package:repaid_loan/util/adjust_track_tool.dart';
 import 'package:repaid_loan/util/api_util/index.dart';
 
 import '../models/cont_model.dart';
@@ -53,16 +54,37 @@ class ContactInfoController extends GetxController {
       case 'parents':
         parentNameController.text = phoneContact.fullName ?? '';
         parentNumberController.text = phoneContact.phoneNumber?.number ?? '';
+        ADJustTrackTool.trackWith('argxeu');
+        break;
       case 'family':
         familyNameController.text = phoneContact.fullName ?? '';
         familyNumberController.text = phoneContact.phoneNumber?.number ?? '';
+        ADJustTrackTool.trackWith('oiu095');
+        break;
       case 'colleague':
         colleagueNameController.text = phoneContact.fullName ?? '';
         colleagueNumberController.text = phoneContact.phoneNumber?.number ?? '';
+        ADJustTrackTool.trackWith('7efmxc');
+        break;
+    }
+  }
+
+  void nameOnPressed(String type) {
+    switch (type) {
+      case 'parents':
+        ADJustTrackTool.trackWith('xd3cmt');
+        break;
+      case 'family':
+        ADJustTrackTool.trackWith('mv3578');
+        break;
+      case 'colleague':
+        ADJustTrackTool.trackWith('y16huz');
+        break;
     }
   }
 
   void nextBtnOnPressed() async {
+    ADJustTrackTool.trackWith('ljyx8l');
     if (parentNameController.text.trim().isEmpty) return CommonSnackBar.showSnackBar('Parent Name can not be empty.');
     if (parentNumberController.text.trim().isEmpty) return CommonSnackBar.showSnackBar('Parent Number can not be empty.');
     if (familyNameController.text.trim().isEmpty) return CommonSnackBar.showSnackBar('Family Name can not be empty.');

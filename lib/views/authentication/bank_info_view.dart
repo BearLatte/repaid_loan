@@ -30,9 +30,10 @@ class BankInfoView extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30))),
                     child: Column(children: [
-                      bankInfoItemView('Bank Name', inputController: controller.bankNameController),
-                      bankInfoItemView('Account Number', inputController: controller.bankCardNumberController, keyboardType: TextInputType.number),
-                      bankInfoItemView('IFSC Code', inputController: controller.ifscController),
+                      bankInfoItemView('Bank Name', inputController: controller.bankNameController, itemViewOnPressed: () => controller.bankItemViewOnPressed('name')),
+                      bankInfoItemView('Account Number',
+                          inputController: controller.bankCardNumberController, keyboardType: TextInputType.number, itemViewOnPressed: () => controller.bankItemViewOnPressed('number')),
+                      bankInfoItemView('IFSC Code', inputController: controller.ifscController, itemViewOnPressed: () => controller.bankItemViewOnPressed('ifsc')),
                       const Spacer(),
                       Container(
                         width: double.infinity,
@@ -55,7 +56,7 @@ class BankInfoView extends StatelessWidget {
     );
   }
 
-  Widget bankInfoItemView(String title, {TextEditingController? inputController, TextInputType? keyboardType}) {
+  Widget bankInfoItemView(String title, {TextEditingController? inputController, TextInputType? keyboardType, Function()? itemViewOnPressed}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -68,6 +69,7 @@ class BankInfoView extends StatelessWidget {
           controller: inputController,
           keyboardType: keyboardType,
           style: TextStyle(color: ColorsUtil.hexColor(0x333333), fontSize: 20, fontWeight: FontWeight.w600),
+          onTap: itemViewOnPressed,
           decoration: InputDecoration(
             hintText: title,
             prefix: const SizedBox(width: 10),

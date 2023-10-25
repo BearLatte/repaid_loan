@@ -75,7 +75,7 @@ class PersonalInfoView extends StatelessWidget {
                                 FormItemView(
                                   title: 'Paytm Account （optional）',
                                   inputController: controller.paytmController,
-                                  onPressed: () => controller.cellItemOnPressed(FormItemType.email),
+                                  onPressed: () => controller.cellItemOnPressed(FormItemType.paytm),
                                 ),
                                 Container(
                                   width: double.infinity,

@@ -38,6 +38,7 @@ class ContactInfoView extends StatelessWidget {
                             nameController: controller.parentNameController,
                             numberController: controller.parentNumberController,
                             numberEnable: controller.isNumberEnable,
+                            nameOnPressed: () => controller.nameOnPressed('parents'),
                           ),
                           ContactItemView(
                             relation: 'Family Contact',
@@ -45,6 +46,7 @@ class ContactInfoView extends StatelessWidget {
                             nameController: controller.familyNameController,
                             numberController: controller.familyNumberController,
                             numberEnable: controller.isNumberEnable,
+                            nameOnPressed: () => controller.nameOnPressed('family'),
                           ),
                           ContactItemView(
                             relation: 'Colleague Contact',
@@ -52,6 +54,7 @@ class ContactInfoView extends StatelessWidget {
                             nameController: controller.colleagueNameController,
                             numberController: controller.colleagueNumberController,
                             numberEnable: controller.isNumberEnable,
+                            nameOnPressed: () => controller.nameOnPressed('colleague'),
                           ),
                           Container(
                             height: 54,

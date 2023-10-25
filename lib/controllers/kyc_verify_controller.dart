@@ -9,6 +9,7 @@ import 'package:repaid_loan/common/common_snack_bar.dart';
 import 'package:repaid_loan/models/cont_model.dart';
 import 'package:repaid_loan/models/kyc_model.dart';
 import 'package:repaid_loan/route/index.dart';
+import 'package:repaid_loan/util/adjust_track_tool.dart';
 import 'package:repaid_loan/util/api_util/index.dart';
 import 'package:repaid_loan/views/authentication/form_item_view.dart';
 
@@ -57,7 +58,8 @@ class KYCVerifyController extends GetxController {
     update();
   }
 
-  void fontCardOnPressed() async {
+  void frontCardOnPressed() async {
+    ADJustTrackTool.trackWith('i5amqe');
     PermissionStatus status = await Permission.camera.request();
     if (status != PermissionStatus.granted) {
       return CommonSnackBar.showSnackBar('You did not allow us to access the camera, which will help you obtain a loan. Would you like to set up authorization.');
@@ -79,6 +81,7 @@ class KYCVerifyController extends GetxController {
   }
 
   void backCardOnPressed() async {
+    ADJustTrackTool.trackWith('qeoepb');
     PermissionStatus status = await Permission.camera.request();
     if (status != PermissionStatus.granted) {
       return CommonSnackBar.showSnackBar('You did not allow us to access the camera, which will help you obtain a loan. Would you like to set up authorization.');
@@ -96,15 +99,27 @@ class KYCVerifyController extends GetxController {
 
   void formItemOnPressed(FormItemType itemType) async {
     switch (itemType) {
+      case FormItemType.aadhaarName:
+        ADJustTrackTool.trackWith('qblpoa');
+        break;
+      case FormItemType.aadhaarNumber:
+        ADJustTrackTool.trackWith('d2msxi');
+        break;
+      case FormItemType.address:
+        ADJustTrackTool.trackWith('byp2xm');
+        break;
       case FormItemType.marriage:
+        ADJustTrackTool.trackWith('9h95m6');
         int? chooseIndex = await CommonPicker.showPicker(context: Get.context!, value: 0, options: marriageEnum);
         if (chooseIndex != null) marriageController.text = marriageEnum[chooseIndex];
         break;
       case FormItemType.education:
+        ADJustTrackTool.trackWith('nyqw7w');
         int? chooseIndex = await CommonPicker.showPicker(context: Get.context!, value: 0, options: educationEnum);
         if (chooseIndex != null) educationController.text = educationEnum[chooseIndex];
         break;
       case FormItemType.birth:
+        ADJustTrackTool.trackWith('osymdf');
         DateTime? selectedDate = await showDatePicker(
           context: Get.context!,
           initialDate: DateTime.now(),
@@ -123,10 +138,12 @@ class KYCVerifyController extends GetxController {
 
   void genderChanged(Gender gender) {
     currentGender = gender;
+    ADJustTrackTool.trackWith('nzkmpm');
     update();
   }
 
   void nextOnPressed() async {
+    ADJustTrackTool.trackWith('mypsnb');
     PermissionStatus status = await Permission.location.request();
     if (status != PermissionStatus.granted) {
       String? result =

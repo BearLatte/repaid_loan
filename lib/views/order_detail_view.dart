@@ -45,7 +45,10 @@ class OrderDetailView extends StatelessWidget {
                                 if (controller.detailType != OrderDetailType.disbursingFailed &&
                                     controller.detailType != OrderDetailType.unRepay &&
                                     controller.detailType != OrderDetailType.overduePayed)
-                                  Expanded(child: ListView(children: controller.recommendProducts.map((product) => ProductCell(product: product)).toList())),
+                                  Expanded(
+                                      child: ListView(
+                                          children:
+                                              controller.recommendProducts.map((product) => ProductCell(product: product, onPressed: () => controller.recommendProductOnPressed(product))).toList())),
                                 if (controller.detailType == OrderDetailType.unRepay || controller.detailType == OrderDetailType.overdue)
                                   Expanded(child: Container(child: repayBtnExtensionView(controller)))
                               ],

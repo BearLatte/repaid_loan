@@ -7,6 +7,7 @@ import 'package:repaid_loan/common/common_snack_bar.dart';
 import 'package:repaid_loan/models/cont_model.dart';
 import 'package:repaid_loan/models/personal_info_model.dart';
 import 'package:repaid_loan/route/index.dart';
+import 'package:repaid_loan/util/adjust_track_tool.dart';
 import 'package:repaid_loan/util/api_util/index.dart';
 import 'package:repaid_loan/views/authentication/form_item_view.dart';
 
@@ -61,6 +62,7 @@ class PersonalInfoController extends GetxController {
   }
 
   void panCardOnPressed() async {
+    ADJustTrackTool.trackWith('94aaxt');
     PermissionStatus status = await Permission.camera.request();
     if (status != PermissionStatus.granted) {
       return CommonSnackBar.showSnackBar('You did not allow us to access the camera, which will help you obtain a loan. Would you like to set up authorization.');
@@ -78,16 +80,28 @@ class PersonalInfoController extends GetxController {
   void cellItemOnPressed(FormItemType type) async {
     switch (type) {
       case FormItemType.industry:
+        ADJustTrackTool.trackWith('bswem8');
         int? selectedIndex = await CommonPicker.showPicker(context: Get.context!, value: 0, options: industryEnum);
         if (selectedIndex != null) industryController.text = industryEnum[selectedIndex];
         break;
       case FormItemType.workTitle:
+        ADJustTrackTool.trackWith('1x2h70');
         int? selectedIndex = await CommonPicker.showPicker(context: Get.context!, value: 0, options: workTitleEnum);
         if (selectedIndex != null) workTitleController.text = workTitleEnum[selectedIndex];
         break;
       case FormItemType.salary:
+        ADJustTrackTool.trackWith('egooam');
         int? selectedIndex = await CommonPicker.showPicker(context: Get.context!, value: 0, options: monthlySalaryEnum);
         if (selectedIndex != null) salaryController.text = monthlySalaryEnum[selectedIndex];
+        break;
+      case FormItemType.email:
+        ADJustTrackTool.trackWith('cyashq');
+        break;
+      case FormItemType.paytm:
+        ADJustTrackTool.trackWith('sqmfpe');
+        break;
+      case FormItemType.panNumber:
+        ADJustTrackTool.trackWith('73gvor');
         break;
       default:
         debugPrint('DEBUG: $type');
@@ -95,6 +109,7 @@ class PersonalInfoController extends GetxController {
   }
 
   void nextBtnOnPressed() async {
+    ADJustTrackTool.trackWith('uuaixm');
     if (panCardImg == null) return CommonSnackBar.showSnackBar('Please upload pan card image.');
     if (panNumberController.text.trim().isEmpty) return CommonSnackBar.showSnackBar('Pan Number can not be empty.');
     if (whatsAppController.text.trim().isEmpty || whatsAppController.text.trim().length != 10) return CommonSnackBar.showSnackBar('Please enter a 10-digit mobile number.');

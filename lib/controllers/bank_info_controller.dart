@@ -5,6 +5,7 @@ import 'package:repaid_loan/common/common_snack_bar.dart';
 import 'package:repaid_loan/models/bank_info_model.dart';
 import 'package:repaid_loan/models/cont_model.dart';
 import 'package:repaid_loan/route/index.dart';
+import 'package:repaid_loan/util/adjust_track_tool.dart';
 import 'package:repaid_loan/util/api_util/index.dart';
 
 class BankInfoController extends GetxController {
@@ -12,7 +13,22 @@ class BankInfoController extends GetxController {
   TextEditingController bankCardNumberController = TextEditingController();
   TextEditingController ifscController = TextEditingController();
 
+  void bankItemViewOnPressed(String type) {
+    switch (type) {
+      case 'name':
+        ADJustTrackTool.trackWith('vb13am');
+        break;
+      case 'number':
+        ADJustTrackTool.trackWith('sfiih3');
+        break;
+      case 'ifsc':
+        ADJustTrackTool.trackWith('kiiuum');
+        break;
+    }
+  }
+
   void nextButtonOnPressed() async {
+    ADJustTrackTool.trackWith('kw4oox');
     if (bankNameController.text.trim().isEmpty) return CommonSnackBar.showSnackBar('Bank Name can not be empty.');
     if (bankCardNumberController.text.trim().isEmpty) return CommonSnackBar.showSnackBar('Bank Card Number cant not be empty.');
     if (ifscController.text.trim().isEmpty) return CommonSnackBar.showSnackBar('IFSC Code can not be empty.');

@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:repaid_loan/models/order_model.dart';
 import 'package:repaid_loan/route/index.dart';
+import 'package:repaid_loan/util/adjust_track_tool.dart';
 import 'package:repaid_loan/util/api_util/index.dart';
 import 'package:repaid_loan/util/api_util/response_model.dart';
 import 'package:repaid_loan/util/order_type.dart';
@@ -35,5 +36,8 @@ class OrderListContentController extends GetxController {
     orders.value = response.list ?? [];
   }
 
-  void orderItemOnTap(OrderModel order) => Get.toNamed(Routes.orderDetail, arguments: order.loanOrderNo);
+  void orderItemOnTap(OrderModel order) {
+    ADJustTrackTool.trackWith('8nj4vc');
+    Get.toNamed(Routes.orderDetail, arguments: order.loanOrderNo);
+  }
 }

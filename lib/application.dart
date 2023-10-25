@@ -1,3 +1,6 @@
+import 'package:adjust_sdk/adjust.dart';
+import 'package:adjust_sdk/adjust_config.dart';
+import 'package:adjust_sdk/adjust_event_success.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -13,6 +16,7 @@ class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Global.setAppOpenTime();
+    initAdjust();
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: Routes.home,
@@ -29,5 +33,38 @@ class Application extends StatelessWidget {
         }
       },
     );
+  }
+
+  void initAdjust() {
+    AdjustConfig config = AdjustConfig('sg346zqpiuio', AdjustEnvironment.production);
+    config.logLevel = AdjustLogLevel.verbose;
+    config.defaultTracker = 'AppStore';
+    config.allowAdServicesInfoReading = true;
+    config.allowIdfaReading = true;
+    config.deactivateSKAdNetworkHandling();
+    config.linkMeEnabled = true;
+    config.urlStrategy = AdjustConfig.UrlStrategyChina;
+
+    config.eventSuccessCallback = (AdjustEventSuccess eventSuccessData) {
+      if (eventSuccessData.eventToken != null) {
+        debugPrint('[Adjust]: Event token: ${eventSuccessData.eventToken}');
+      }
+      if (eventSuccessData.message != null) {
+        debugPrint('[Adjust]: Message: ${eventSuccessData.message}');
+      }
+      if (eventSuccessData.timestamp != null) {
+        debugPrint('[Adjust]: Timestamp: ${eventSuccessData.timestamp}');
+      }
+      if (eventSuccessData.adid != null) {
+        debugPrint('[Adjust]: Adid: ${eventSuccessData.adid}');
+      }
+      if (eventSuccessData.callbackId != null) {
+        debugPrint('[Adjust]: Callback ID: ${eventSuccessData.callbackId}');
+      }
+      if (eventSuccessData.jsonResponse != null) {
+        debugPrint('[Adjust]: JSON response: ${eventSuccessData.jsonResponse}');
+      }
+    };
+    Adjust.start(config);
   }
 }

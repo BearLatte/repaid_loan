@@ -31,7 +31,7 @@ class KYCVerifyView extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 10),
                     child: Column(
                       children: [
-                        OCRChoosePanel(title: 'Aadhaar Card Front', simpleImg: controller.kycFrontImage, cameraBtnOnPressed: controller.fontCardOnPressed),
+                        OCRChoosePanel(title: 'Aadhaar Card Front', simpleImg: controller.kycFrontImage, cameraBtnOnPressed: controller.frontCardOnPressed),
                         OCRChoosePanel(title: 'Aadhaar Card Back', simpleImg: controller.kycBackImage, cameraBtnOnPressed: controller.backCardOnPressed),
                         Container(
                           margin: const EdgeInsets.only(top: 10),

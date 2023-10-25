@@ -4,6 +4,7 @@ import 'package:repaid_loan/common/common_alert.dart';
 import 'package:repaid_loan/global/index.dart';
 import 'package:repaid_loan/models/cont_model.dart';
 import 'package:repaid_loan/route/index.dart';
+import 'package:repaid_loan/util/adjust_track_tool.dart';
 import 'package:repaid_loan/util/api_util/index.dart';
 
 import '../models/product_model.dart';
@@ -53,19 +54,24 @@ class HomeController extends GetxController {
 
   void productOnPressed(ProductModel product) async {
     if (!(await Global.isLogin)) {
+      ADJustTrackTool.trackWith('f2fxf5');
       return Get.toNamed(Routes.login);
     }
     ContModel cont = await ApiUtil.checkSpaceDetail(product.id);
     if (cont.userStatus == 1) {
+      ADJustTrackTool.trackWith('f2fxf5');
       Get.toNamed(Routes.kycVerify);
     } else if (cont.userStatus == 2) {
+      ADJustTrackTool.trackWith('y9n3ay');
       Get.toNamed(Routes.productDetail, arguments: {'isRecommend': false, 'product': cont.loanProductVo});
     } else {
+      ADJustTrackTool.trackWith('y9n3ay');
       Get.toNamed(Routes.orderDetail, arguments: cont.loanAuditOrderVo?.loanOrderNo);
     }
   }
 
   void go2orders() {
+    ADJustTrackTool.trackWith('1auiwy');
     if (!isLogin) {
       Get.toNamed(Routes.login);
       return;
@@ -75,6 +81,7 @@ class HomeController extends GetxController {
   }
 
   void go2changeBankInfo() {
+    ADJustTrackTool.trackWith('ybdxll');
     if (!isLogin) {
       Get.toNamed(Routes.login);
       return;
@@ -88,7 +95,10 @@ class HomeController extends GetxController {
     Get.toNamed(Routes.modifyBankAccount);
   }
 
-  void go2profile() {
+  void go2profile() async {
+    if (!(await Global.isLogin) || !isVerified) {
+      ADJustTrackTool.trackWith('8gt76z');
+    }
     Get.toNamed(Routes.profile);
   }
 }

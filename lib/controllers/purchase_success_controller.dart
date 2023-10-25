@@ -13,6 +13,8 @@ class PurchaseSuccessController extends GetxController {
         Routes.productDetail,
         arguments: {'isRecommend': false, 'product': cont.loanProductVo},
       );
+    } else {
+      Get.toNamed(Routes.orderDetail, arguments: cont.loanAuditOrderVo?.loanOrderNo);
     }
   }
 }

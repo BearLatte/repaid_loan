@@ -10,6 +10,7 @@ class BaseView extends StatelessWidget {
   final bool extendBody;
   final bool extendBodyBehindAppBar;
   final bool isResizeToAvoidBottomInset;
+  final Function()? backAction;
   const BaseView({
     super.key,
     required this.body,
@@ -19,6 +20,7 @@ class BaseView extends StatelessWidget {
     this.extendBodyBehindAppBar = false,
     this.extendBody = false,
     this.isResizeToAvoidBottomInset = true,
+    this.backAction,
   });
 
   @override
@@ -30,7 +32,14 @@ class BaseView extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        leading: showBackButton ? IconButton(onPressed: () => Get.back(), icon: const Icon(Icons.arrow_back_sharp)) : null,
+        leading: showBackButton
+            ? IconButton(
+                onPressed: () {
+                  if (backAction != null) backAction!();
+                  Get.back();
+                },
+                icon: const Icon(Icons.arrow_back_sharp))
+            : null,
         title: Text(title ?? '', style: const TextStyle(color: Colors.white, fontSize: 20)),
       ),
       body: Stack(children: [background ?? Container(color: ColorsUtil.hexColor(0xf5f5f5)), body]),

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:repaid_loan/common/base_view.dart';
 import 'package:repaid_loan/common/common_image.dart';
 import 'package:repaid_loan/controllers/login_controller.dart';
+import 'package:repaid_loan/util/adjust_track_tool.dart';
 import 'package:repaid_loan/widgets/hidden_keyboard_wraper.dart';
 
 import '../util/colors_util.dart';
@@ -110,6 +111,9 @@ class LoginView extends StatelessWidget {
               controller: controller.codeController,
               obscureText: controller.isSecurityType.value,
               style: TextStyle(color: ColorsUtil.hexColor(0x323643), fontSize: 20, fontWeight: FontWeight.w600),
+              onTap: () {
+                ADJustTrackTool.trackWith('5p1qqz');
+              },
               decoration: InputDecoration(
                 hintText: 'One-time-Password',
                 hintStyle: TextStyle(color: ColorsUtil.hexColor(0x323643), fontSize: 20, fontWeight: FontWeight.w600),

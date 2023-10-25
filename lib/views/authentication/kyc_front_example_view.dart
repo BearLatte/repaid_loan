@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:repaid_loan/common/base_view.dart';
 import 'package:repaid_loan/common/common_image.dart';
+import 'package:repaid_loan/util/adjust_track_tool.dart';
 import 'package:repaid_loan/util/colors_util.dart';
 
 class KYCFrontExampleView extends StatelessWidget {
@@ -57,7 +58,10 @@ class KYCFrontExampleView extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 30),
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                       child: ElevatedButton(
-                        onPressed: () => Get.back(result: 'ok'),
+                        onPressed: () {
+                          ADJustTrackTool.trackWith('5rab4n');
+                          Get.back(result: 'ok');
+                        },
                         child: const Text('OK', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600)),
                       ),
                     )

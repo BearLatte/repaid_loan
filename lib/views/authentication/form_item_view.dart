@@ -5,7 +5,7 @@ enum Gender { none, male, female }
 
 enum CellType { normal, selection }
 
-enum FormItemType { aadhaarName, aadhaarNumber, birth, marriage, education, address, panNumber, whatApp, industry, workTitle, salary, email }
+enum FormItemType { aadhaarName, aadhaarNumber, birth, marriage, education, address, panNumber, whatApp, industry, workTitle, salary, email, paytm }
 
 class FormItemView extends StatelessWidget {
   final String title;

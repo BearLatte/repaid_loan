@@ -31,15 +31,15 @@
 	<key>NSUserTrackingUsageDescription</key>
 	<string>This identifier will be used to recommend personalized advertisements to you.</string>
 	<key>NSCameraUsageDescription</key>
-    <string>You did not allow us to access the camera, which will help you obtain a loan. Would you like to set up authorization.</string>
-    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>Please allow us to use location information, which will help you obtain a loan, otherwise you will not be able to apply for a loan.</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Please allow us to use location information, which will help you obtain a loan, otherwise you will not be able to apply for a loan.</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>You did not allow us to access the Photo Library, which will help you obtain a loan. Would you like to set up authorization.</string>
-    <key>NSContactsUsageDescription</key>
-    <string>Please allow us to use Contacts information, which will help you obtain a loan, otherwise you will not be able to apply for a loan.</string>
+	<string>You did not allow us to access the camera, which will help you obtain a loan. Would you like to set up authorization.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Please allow us to use location information, which will help you obtain a loan, otherwise you will not be able to apply for a loan.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Please allow us to use location information, which will help you obtain a loan, otherwise you will not be able to apply for a loan.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>You did not allow us to access the Photo Library, which will help you obtain a loan. Would you like to set up authorization.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Please allow us to use Contacts information, which will help you obtain a loan, otherwise you will not be able to apply for a loan.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -55,5 +55,11 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>FacebookAppID</key>
+	<string>[APP_ID]</string>
+	<key>FacebookClientToken</key>
+	<string>[CLIENT_TOKEN]</string>
+	<key>FacebookDisplayName</key>
+	<string>Repaid Loan</string>
 </dict>
 </plist>

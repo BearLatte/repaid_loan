@@ -7,6 +7,7 @@ class ContactItemView extends StatelessWidget {
   final TextEditingController? numberController;
   final TextEditingController? nameController;
   final Function()? phoneOnPressed;
+  final Function()? nameOnPressed;
   final bool numberEnable;
   const ContactItemView({
     super.key,
@@ -15,6 +16,7 @@ class ContactItemView extends StatelessWidget {
     this.nameController,
     this.phoneOnPressed,
     this.numberEnable = false,
+    this.nameOnPressed,
   });
 
   @override
@@ -65,6 +67,7 @@ class ContactItemView extends StatelessWidget {
               Text('Name', style: TextStyle(color: ColorsUtil.hexColor(0xa5a5a5), fontSize: 16)),
               TextField(
                 controller: nameController,
+                onTap: nameOnPressed,
                 style: TextStyle(color: ColorsUtil.hexColor(0x333333), fontSize: 20, fontWeight: FontWeight.w600),
                 decoration: InputDecoration(
                   hintText: 'Name',

@@ -4,6 +4,7 @@ import 'package:repaid_loan/models/cont_model.dart';
 import 'package:repaid_loan/models/order_model.dart';
 import 'package:repaid_loan/models/product_model.dart';
 import 'package:repaid_loan/route/index.dart';
+import 'package:repaid_loan/util/adjust_track_tool.dart';
 import 'package:repaid_loan/util/api_util/index.dart';
 import 'package:repaid_loan/util/api_util/response_model.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -74,6 +75,11 @@ class OrderDetailController extends GetxController {
   }
 
   void extensionBtnOnPressed() async {
+    if (detailType == OrderDetailType.unRepay) {
+      ADJustTrackTool.trackWith('j6hwcn');
+    } else {
+      ADJustTrackTool.trackWith('p0hg4l');
+    }
     String? result = await CommonAlert.showAlert(
       message: 'Paying a small amount admission fee. You can pay the whole bill later.',
       isShowTitle: false,
@@ -88,9 +94,27 @@ class OrderDetailController extends GetxController {
   }
 
   void repayBtnOnPressed() async {
+    if (detailType == OrderDetailType.unRepay) {
+      ADJustTrackTool.trackWith('b85p6a');
+    } else {
+      ADJustTrackTool.trackWith('xl194p');
+    }
     String? path = await ApiUtil.fetchRepayPath(_orderNumber);
     if (path != null && await canLaunchUrlString(path)) {
       await launchUrlString(path);
+    }
+  }
+
+  void recommendProductOnPressed(ProductModel product) async {
+    if (detailType == OrderDetailType.throughFrozen) {
+      ADJustTrackTool.trackWith('yqhvo0');
+    }
+
+    ContModel cont = await ApiUtil.checkSpaceDetail(product.id);
+    if (cont.userStatus == 2) {
+      Get.toNamed(Routes.productDetail, arguments: {'isRecommend': false, 'product': cont.loanProductVo});
+    } else {
+      Get.toNamed(Routes.orderDetail, arguments: cont.loanAuditOrderVo?.loanOrderNo);
     }
   }
 }

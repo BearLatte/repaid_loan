@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -12,8 +11,10 @@ import 'package:repaid_loan/global/index.dart';
 import 'package:repaid_loan/models/cont_model.dart';
 import 'package:repaid_loan/models/product_model.dart';
 import 'package:repaid_loan/route/index.dart';
+import 'package:repaid_loan/util/adjust_track_tool.dart';
 import 'package:repaid_loan/util/api_util/index.dart';
 import 'package:repaid_loan/util/api_util/response_model.dart';
+import 'package:repaid_loan/util/facebook_track_tool.dart';
 
 class ProductDetailController extends GetxController {
   late String productId;
@@ -35,6 +36,10 @@ class ProductDetailController extends GetxController {
 
   void loanProductOnPressed() async {
     if (isFaceRecognize) {
+      bool isRecommend = Get.arguments['isRecommend'];
+      if (isRecommend) {
+        ADJustTrackTool.trackWith('wt8yv6');
+      }
       // 配置参数并购买
       configParamsAndPurchaseProduct();
     } else {
@@ -59,7 +64,6 @@ class ProductDetailController extends GetxController {
       }
 
       // 联系人权限
-
       PermissionStatus contactStatus = await Permission.contacts.request();
       if (contactStatus != PermissionStatus.granted) {
         return CommonSnackBar.showSnackBar('You did not allow us to access the contacts. Allowing it will help you obtain a loan. Do you want to set up authorization.');
@@ -93,7 +97,8 @@ class ProductDetailController extends GetxController {
     ResponseModel<ProductModel> response = await ApiUtil.uploadDeviceInfoAndPurchaseProduct(params);
     ContModel cont = response.cont!;
     if (cont.isFirstApply == 1) {
-      debugPrint('DEBUG: 发送adjust和facebook 的首贷下单事件');
+      ADJustTrackTool.trackWith('rbafr6');
+      FacebookTrackTool.trackWith(FacebookTrackType.addToCard);
     }
     Get.offNamedUntil(Routes.purchaseSuccess, (route) => route.isFirst, arguments: response.list);
   }

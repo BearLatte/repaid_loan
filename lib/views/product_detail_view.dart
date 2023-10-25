@@ -4,6 +4,7 @@ import 'package:repaid_loan/common/base_view.dart';
 import 'package:repaid_loan/common/common_image.dart';
 import 'package:repaid_loan/controllers/product_detail_controller.dart';
 import 'package:repaid_loan/models/product_detail_model.dart';
+import 'package:repaid_loan/util/adjust_track_tool.dart';
 import 'package:repaid_loan/util/colors_util.dart';
 
 class ProductDetailView extends StatelessWidget {
@@ -20,6 +21,9 @@ class ProductDetailView extends StatelessWidget {
       title: 'Detail',
       extendBodyBehindAppBar: true,
       background: Container(color: ColorsUtil.hexColor(0x00AD8E)),
+      backAction: () {
+        if (Get.arguments['isRecommend']) ADJustTrackTool.trackWith('ijcr1p');
+      },
       body: SafeArea(
         bottom: false,
         child: Stack(

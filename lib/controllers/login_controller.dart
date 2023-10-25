@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:repaid_loan/common/common_snack_bar.dart';
 import 'package:repaid_loan/global/index.dart';
 import 'package:repaid_loan/models/cont_model.dart';
+import 'package:repaid_loan/util/adjust_track_tool.dart';
+import 'package:repaid_loan/util/facebook_track_tool.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../util/api_util/index.dart';
@@ -94,9 +96,12 @@ class LoginController extends GetxController {
       return CommonSnackBar.showSnackBar('Please agree with our policy to continue');
     }
 
+    ADJustTrackTool.trackWith('o7eri4');
+
     ContModel cont = await ApiUtil.login(phoneController.text, codeController.text);
     if (cont.isLogin == 0) {
-      debugPrint('DEBUG: 此处需要做FB和ADJust埋点');
+      ADJustTrackTool.trackWith('myl771');
+      FacebookTrackTool.trackWith(FacebookTrackType.registration);
     }
 
     await Global.loginSuccessConfig(cont, phoneController.text);
